@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file>src/Resources/fuel.png</file>
+        <file>src/Resources/humidity.png</file>
+        <file>src/Resources/oilpressure.png</file>
+        <file>src/Resources/temperature.png</file>
+        <file>src/Resources/speed.png</file>
+    </qresource>
+</RCC>
