@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>656</width>
-    <height>246</height>
+    <height>496</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -75,6 +75,9 @@
           <property name="text">
            <string>Name:</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+          </property>
          </widget>
         </item>
         <item>
@@ -94,7 +97,7 @@
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>20</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="frameShape">
@@ -164,35 +167,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>30</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="text">
            <string>Type:</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+          </property>
          </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Orientation::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Policy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>7</width>
-            <height>26</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <widget class="QTextEdit" name="TypeDisplay">
@@ -211,7 +201,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>20</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="frameShape">
@@ -252,6 +242,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="text">
            <string>Description:</string>
           </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+          </property>
          </widget>
         </item>
         <item>
@@ -271,7 +264,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>20</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="accessibleName">
