@@ -12,6 +12,7 @@
 AddItem::AddItem(QWidget *parent) : QDialog(parent), ui(new Ui::AddItem)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
     this->setWindowTitle(QString::fromStdString("Add new sensor"));
     ui->NameLine->setFocus();
     QRegularExpression regExp("[\\p{L}0-9]*");

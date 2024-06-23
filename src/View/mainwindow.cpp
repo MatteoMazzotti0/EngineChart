@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     info = new InfoWidget(this);
     chart = new ChartDisplayWidget(this);
 
+    this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
+
     HSplit = new QSplitter;
     VSplit = new QSplitter;
 
@@ -33,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     VSplit->setHandleWidth(10);
 
     QList<int> sizes;
-    sizes << 80 << 400;
+    sizes << 170 << 330;
 
     VSplit->setSizes(sizes);
 

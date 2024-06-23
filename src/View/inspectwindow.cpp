@@ -8,6 +8,7 @@ InspectWindow::InspectWindow(AbstractSensor *target, QWidget *parent)
     : QDialog(parent), ui(new Ui::InspectWindow), inspected(target)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
     this->setWindowTitle(QString::fromStdString("Inspect values"));
 
     for (int i = 0; i < target->countValues(); i++)

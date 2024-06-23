@@ -4,6 +4,7 @@
 InputDialog::InputDialog(QWidget *parent) : QDialog(parent), ui(new Ui::InputDialog)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
     this->setWindowTitle(QString::fromStdString("Insert value"));
 
     ui->timeBox->setMinimum(0);

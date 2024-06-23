@@ -7,6 +7,7 @@
 EditItem::EditItem(AbstractSensor *sensor, QWidget *parent) : QDialog(parent), ui(new Ui::EditItem), sensor(sensor)
 {
     ui->setupUi(this);
+    this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
     this->setWindowTitle(QString::fromStdString("Edit sensor"));
 
     ui->newName->setText(QString::fromStdString(sensor->getname()));
@@ -15,6 +16,7 @@ EditItem::EditItem(AbstractSensor *sensor, QWidget *parent) : QDialog(parent), u
     QRegularExpression regExp("[a-zA-Z0-9]*");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(regExp, this);
     ui->newName->setValidator(validator);
+    ui->newName->setMaxLength(20);
 
     connect(ui->btn_ok, &QPushButton::clicked, this, &EditItem::onOkClicked);
     connect(ui->btn_cancel, &QPushButton::clicked, this, &EditItem::onCancelClicked);
