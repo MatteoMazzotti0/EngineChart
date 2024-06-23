@@ -13,7 +13,7 @@ class VehicleSpeed : public AbstractSensor
     vector<DataType<unsigned int>> values; // °C
 
   public:
-    VehicleSpeed(const string & = "", const string & = "", const int & = 0, const int & = 220);
+    VehicleSpeed(const string & = "", const string & = "");
     virtual int countValues() const override;
     virtual DataType<unsigned int> getValueAt(const int &) const override;
     virtual bool insertNewVal(const double &, const double &) override;

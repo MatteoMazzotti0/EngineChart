@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>656</width>
-    <height>177</height>
+    <height>246</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -34,8 +34,8 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
     <widget class="QFrame" name="frame">
      <property name="minimumSize">
       <size>
@@ -61,7 +61,7 @@
         <item>
          <widget class="QLabel" name="NameLabel">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -69,7 +69,7 @@
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>30</height>
+            <height>16777215</height>
            </size>
           </property>
           <property name="text">
@@ -80,7 +80,7 @@
         <item>
          <widget class="QTextEdit" name="NameDisplay">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -88,7 +88,7 @@
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -107,10 +107,13 @@
            <number>0</number>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
           </property>
           <property name="lineWrapMode">
            <enum>QTextEdit::LineWrapMode::WidgetWidth</enum>
@@ -153,7 +156,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <item>
          <widget class="QLabel" name="TypeLabel">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -194,7 +197,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <item>
          <widget class="QTextEdit" name="TypeDisplay">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -202,7 +205,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -221,10 +224,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <number>0</number>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContentsOnFirstShow</enum>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -237,6 +243,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Description:</string>
           </property>
@@ -245,7 +257,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <item>
          <widget class="QTextEdit" name="DescDisplay">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -253,7 +265,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
@@ -275,10 +287,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <number>0</number>
           </property>
           <property name="verticalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+           <enum>Qt::ScrollBarPolicy::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::LineWrapMode::WidgetWidth</enum>
           </property>
           <property name="readOnly">
            <bool>true</bool>
@@ -286,22 +304,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Policy::Expanding</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>50</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <layout class="QVBoxLayout" name="widgetLayout">
