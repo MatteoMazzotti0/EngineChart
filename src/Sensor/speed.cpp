@@ -2,7 +2,7 @@
 #include "../Visitor/sensorvisitor.h"
 #include <cstdlib>
 
-VehicleSpeed::VehicleSpeed(const string &n, const string &d, const int &m, const int &ma) : AbstractSensor(n, d, m, ma)
+VehicleSpeed::VehicleSpeed(const string &n, const string &d) : AbstractSensor(n, d, 0, 220)
 {
 }
 
@@ -65,37 +65,35 @@ bool VehicleSpeed::insertNewVal(const double &time, const double &val)
 
 void VehicleSpeed::simulation()
 {
-    values.clear(); // Pulisce il vettore dei valori esistenti
+    values.clear();
 
-    const unsigned int minValue = 0;  // Velocità minima
-    const unsigned int maxValue = 100; // Velocità massima
+    const unsigned int minValue = getmin(); // 0
+    const unsigned int maxValue = getmax(); // 220
 
-    unsigned int currentValue = minValue; // Valore iniziale della velocità
+    unsigned int currentValue = minValue;   // parto da 0
+    values.push_back(currentValue);
 
-    for (unsigned int i = 0; i < 25; i++)
+    for (unsigned int i = 0; i < 70; i++)
     {
-        // Decisione casuale: 0 significa mantenere costante, 1 significa aumentare
-        int decision = rand() % 2;
+        int decision = rand() % 2; // il valore aumenta o resta costante
 
-        if (decision == 1)
+        if (decision == 1) // velocità aumenta
         {
-            // Aumento casuale della velocità
-            unsigned int increase = rand() % 10 + 1; // Aumento casuale tra 1 e 10
+            unsigned int increase = rand() % 10 + 1; // aumento casuale tra 1 e 10
 
             unsigned int newValue = currentValue + increase;
 
-            // Assicurati che il nuovo valore sia nel range [minValue, maxValue]
+            // check valore nel range
             if (newValue > maxValue)
                 newValue = maxValue;
 
             DataType temp(i, newValue);
             values.push_back(temp);
 
-            currentValue = newValue; // Aggiorna il valore corrente
+            currentValue = newValue;
         }
-        else
+        else // velocità costante
         {
-            // Mantieni la velocità costante
             DataType temp(i, currentValue);
             values.push_back(temp);
         }

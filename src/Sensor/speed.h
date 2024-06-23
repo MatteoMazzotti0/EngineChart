@@ -9,10 +9,10 @@ class SensorVisitor;
 
 class VehicleSpeed : public AbstractSensor
 {
-private:
+  private:
     vector<DataType<unsigned int>> values; // °C
 
-public:
+  public:
     VehicleSpeed(const string & = "", const string & = "", const int & = 0, const int & = 220);
     virtual int countValues() const override;
     virtual DataType<unsigned int> getValueAt(const int &) const override;

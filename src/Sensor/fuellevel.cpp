@@ -58,7 +58,7 @@ DataType<unsigned int> FuelLevel::getValueAt(const int &pos) const
 }
 
 FuelLevel::FuelLevel(const string &n, const string &d)
-    : AbstractSensor::AbstractSensor(n, d, 0, 100){
+    : AbstractSensor::AbstractSensor(n, d, 0, 90){
 
       };
 
@@ -70,12 +70,12 @@ void FuelLevel::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = 0;
-    const unsigned int maxValue = 100;
+    const unsigned int minValue = getmin(); // 0;
+    const unsigned int maxValue = getmax(); // 90; litri serbatoio
 
   unsigned int lastValue = rand() % (maxValue - 80 + 1) + 80; // parte con serbatoio più o meno pieno
 
-    for (unsigned int i = 0; i < 70; i++)
+    for (unsigned int i = 0; i < 100; i++)
     {
         unsigned int variation = rand() % 2; // Variazione casuale tra 0 e +1
 

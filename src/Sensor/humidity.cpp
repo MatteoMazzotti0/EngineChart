@@ -1,7 +1,7 @@
 #include "humidity.h"
 #include "../Visitor/sensorvisitor.h"
 
-HumiditySensor::HumiditySensor(const string &n, const string &d) : AbstractSensor::AbstractSensor(n, d, 0, 100)
+HumiditySensor::HumiditySensor(const string &n, const string &d) : AbstractSensor::AbstractSensor(n, d, 20, 80)
 {
 }
 
@@ -65,9 +65,9 @@ void HumiditySensor::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = 20;
-    const unsigned int maxValue = 80;
-    const unsigned int maxStep = 2;  // variazione per step (ho tolto quegli spikes causali orrendi)
+    const unsigned int minValue = getmin(); // 20
+    const unsigned int maxValue = getmax(); // 80
+    const unsigned int maxStep = 2;  // variazione per step
 
     unsigned int lastValue = rand() % (maxValue - minValue + 1) + minValue; // valore iniziale casuale nel range
 
@@ -81,8 +81,6 @@ void HumiditySensor::simulation()
         unsigned int newValue = tempValue < static_cast<int>(minValue) ? minValue :
                                 tempValue > static_cast<int>(maxValue) ? maxValue :
                                             static_cast<unsigned int>(tempValue);
-        // i cast sono stati fatti in sicurezza seguendo le buone pratiche del programmatore
-        // e riducendo i possibili rischi al minimo grazie ai molteplici check in modo che Ranzato non ci linci👍
 
         DataType temp(i, newValue);
         values.push_back(temp);

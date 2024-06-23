@@ -70,7 +70,7 @@ void AddItem::on_AddButtonDiag_clicked()
         else if (ui->SpeedRadio->isChecked())
         {
             VehicleSpeed *newsensor =
-                new VehicleSpeed(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), 0, 100);
+                new VehicleSpeed(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString());
             emit dataAvailable(newsensor);
             close();
         }

@@ -2,7 +2,6 @@
 #define TEMPERATURE_H
 #include "../DataType/datatype.h"
 #include "abstractsensor.h"
-#include <algorithm>
 
 class SensorVisitor;
 

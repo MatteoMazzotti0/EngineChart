@@ -29,14 +29,15 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target)
     chartView->chart()->setTitle("Sensor values");
 
     //Setting dei valori
-    QLineSeries *values = new QLineSeries();
-    if(target!=nullptr)
-    {
-        for (int i = 0; i < target->countValues(); i++)
+        QLineSeries *values = new QLineSeries();
+        if(target!=nullptr)
         {
-            values->append(target->getValueAt(i).time(), target->getValueAt(i).value());
+            for (int i = 0; i < target->countValues(); i++)
+            {
+                values->append(target->getValueAt(i).time(), target->getValueAt(i).value());
+            }
         }
-    }
+
 
     //Creazione assi
     auto axisX = new QValueAxis;

@@ -58,8 +58,8 @@ bool OilPressure::insertNewVal(const double &time, const double &val)
     return true;
 }
 
-OilPressure::OilPressure(const string &n, const string &d, const int &m, const int &ma)
-    : AbstractSensor::AbstractSensor(n, d, m, ma)
+OilPressure::OilPressure(const string &n, const string &d)
+    : AbstractSensor::AbstractSensor(n, d, 10, 90)
 {
 }
 
@@ -67,8 +67,8 @@ void OilPressure::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = 10;
-    const unsigned int maxValue = 90;
+    const unsigned int minValue = getmin(); // 10
+    const unsigned int maxValue = getmax(); // 90
 
     unsigned int currentValue = maxValue;
 
@@ -79,7 +79,7 @@ void OilPressure::simulation()
     {
         if (!reachedSpot) // diminuisco progressivamente i valori fino allo spot
         {
-            unsigned int increase = rand() % 5 + 2; // ho testato per 15 minuti se li cambi ti ammazzo
+            unsigned int increase = rand() % 5 + 2;
             unsigned int newValue = currentValue - increase;
 
             if (newValue <= spotPressure)
