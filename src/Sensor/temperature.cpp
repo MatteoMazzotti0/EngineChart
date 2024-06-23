@@ -2,7 +2,7 @@
 #include "../Visitor/sensorvisitor.h"
 #include <cstdlib>
 
-TempSensor::TempSensor(const string &n, const string &d, const int &m, const int &ma) : AbstractSensor(n, d, m, ma)
+TempSensor::TempSensor(const string &n, const string &d) : AbstractSensor(n, d, 0, 100)
 {
 }
 

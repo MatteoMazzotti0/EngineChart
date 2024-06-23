@@ -20,7 +20,6 @@ class HumiditySensor : public AbstractSensor
     virtual void deleteAllValues() override;
     virtual ~HumiditySensor();
     virtual void simulation() override;
-
     virtual void accept(SensorVisitor *visitor) const override;
     virtual void setButton(SensorVisitor *visitor) const override;
 };

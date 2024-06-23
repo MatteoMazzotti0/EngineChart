@@ -49,7 +49,7 @@ void AddItem::on_AddButtonDiag_clicked()
         else if (ui->TempRadio->isChecked())
         {
             TempSensor *newsensor =
-                new TempSensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), 0, 100);
+                new TempSensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString());
             emit dataAvailable(newsensor);
             close();
         }
