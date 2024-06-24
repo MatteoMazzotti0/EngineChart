@@ -6,6 +6,7 @@
 #include "ui_mainwindow.h"
 #include <QLineSeries>
 #include <QSplitter>
+#include <iostream>
 using std::string;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -35,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     VSplit->setHandleWidth(10);
 
     QList<int> sizes;
-    sizes << 170 << 330;
+    sizes << 100 << 330;
 
     VSplit->setSizes(sizes);
 
@@ -59,10 +60,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (pos < threshold)
         {
             splitterStatus = false;
+            std::cout << pos << std::endl;
         }
         else
         {
             splitterStatus = true;
+            std::cout << pos << std::endl;
         }
     });
 }
@@ -233,7 +236,7 @@ void MainWindow::displayInfo(AbstractSensor *sensor) // mostraggio info del sens
     if (splitterStatus == false)
     {
         QList<int> newSizes;
-        newSizes << 170 << 330;
+        newSizes << 100 << 330;
         VSplit->setSizes(newSizes);
     }
 }
@@ -247,8 +250,7 @@ AbstractSensor *MainWindow::getSensor(const string &name)
 //    SALVATAGGIO E CARICAMENTO
 //  ------------------------------
 
-AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name,
-                                         const std::string &description)
+AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name, const std::string &description)
 {
     if (type == "Humidity")
     {

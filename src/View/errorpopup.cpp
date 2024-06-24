@@ -6,9 +6,11 @@ ErrorPopup::ErrorPopup(QString message, QWidget* parent)
     , ui(new Ui::ErrorPopup)
 {
     ui->setupUi(this);
-    this->setWindowTitle(QString::fromStdString("Error"));
     ui->label->setText(message);
+    this->setWindowTitle(QString::fromStdString("Error"));
+
     setWindowModality(Qt::ApplicationModal);
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
 }
 
 ErrorPopup::~ErrorPopup()

@@ -21,7 +21,7 @@ SearchAddWidget::SearchAddWidget(QWidget *parent)
     QRegularExpression regExp("[\\p{L}0-9]*");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(regExp, this);
     ui->SearchLine->setValidator(validator);
-    ui->SearchLine->setMaxLength(20);
+    ui->SearchLine->setMaxLength(28);
 }
 
 void SearchAddWidget::searchButton(const QString& target)
@@ -116,7 +116,7 @@ void SearchAddWidget::deleteClicked()
 {
     if (hasFocus != nullptr)
     {
-        // cerco bottone x rimuoverlo
+        // cerco bottone per rimuoverlo
         for (auto it = buttons.begin(); it != buttons.end(); ++it)
         {
             if ((*it)->objectName().toStdString() == hasFocus->getname())

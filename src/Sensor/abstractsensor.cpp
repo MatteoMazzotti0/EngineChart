@@ -5,7 +5,6 @@
 #include "src/Sensor/oilpressure.h"
 #include "src/Sensor/temperature.h"
 #include "src/Sensor/speed.h"
-#include <QErrorMessage>
 
 AbstractSensor::AbstractSensor(const string &n, const string &d, const int &m, const int &ma)
     : name(n), description(d), min(m), max(ma){};

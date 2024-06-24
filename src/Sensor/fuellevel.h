@@ -24,4 +24,4 @@ class FuelLevel : public AbstractSensor
     virtual void setButton(SensorVisitor *visitor) const override;
 };
 
-#endif // FUELLEVEL_H
+#endif
