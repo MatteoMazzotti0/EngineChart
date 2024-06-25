@@ -1,5 +1,4 @@
 #include "inspectwindow.h"
-#include "inputdialog.h"
 #include "qscrollbar.h"
 #include "ui_inspectwindow.h"
 #include <QInputDialog>
@@ -50,7 +49,7 @@ InspectWindow::~InspectWindow()
 
 void InspectWindow::onDeleteValue()
 {
-    if (ui->TimeView->count() != 0 && ui->ValueView->count() != 0)
+    if ((ui->TimeView->count() != 0 && ui->ValueView->count() != 0) && (ui->TimeView->currentItem()!=nullptr) && ui->ValueView->currentItem()!=nullptr)
     {
         emit requestDeleteVal(ui->TimeView->item(currentFocus)->text().toUInt(),
                               ui->ValueView->item(currentFocus)->text().toUInt());

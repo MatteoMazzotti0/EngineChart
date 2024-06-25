@@ -71,7 +71,6 @@ class MainWindow : public QMainWindow
     bool splitterStatus = false;
     static ConcreteVisitor *visitor;
     string oldSensorName; // check per edit desc senza cambiare nome al sensore
-
     int threshold = 180; // soglia per il rezise automatico dello splitter
 };
 

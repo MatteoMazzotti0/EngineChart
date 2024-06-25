@@ -61,7 +61,7 @@
            <bool>false</bool>
           </property>
           <property name="placeholderText">
-           <string>Cerca sensori</string>
+           <string>Search sensors</string>
           </property>
          </widget>
         </item>

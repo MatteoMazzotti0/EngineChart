@@ -2,6 +2,7 @@
 #include "ui_searchaddwidget.h"
 #include"mainwindow.h"
 #include"../Container/container.h"
+#include <QMessageBox>
 
 std::vector<QPushButton*> SearchAddWidget::buttons;
 
@@ -103,7 +104,25 @@ void SearchAddWidget::addClicked()
 
 void SearchAddWidget::deleteAllClicked()
 {
-    for(auto it = buttons.begin();it!=buttons.end();it++)
+    QMessageBox::StandardButton reply; // messaggio di accertamente
+
+    reply = QMessageBox::question(this, "Delete All", "Are you sure you want to delete all sensors?",
+                                  QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        for (auto it = buttons.begin(); it != buttons.end(); ++it)
+        {
+            delete *it;
+        }
+        buttons.clear();
+
+        emit deleteAllSignal();
+    }
+}
+
+void SearchAddWidget::loadDeleteAll()
+{
+    for (auto it = buttons.begin(); it != buttons.end(); ++it)
     {
         delete *it;
     }

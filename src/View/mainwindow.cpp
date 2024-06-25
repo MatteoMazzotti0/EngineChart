@@ -6,8 +6,6 @@
 #include "ui_mainwindow.h"
 #include <QLineSeries>
 #include <QSplitter>
-#include <iostream>
-using std::string;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -60,12 +58,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (pos < threshold)
         {
             splitterStatus = false;
-            std::cout << pos << std::endl;
         }
         else
         {
             splitterStatus = true;
-            std::cout << pos << std::endl;
         }
     });
 }
@@ -93,7 +89,7 @@ void MainWindow::onDataAvailable(AbstractSensor *sensor) // aggiunta del bottone
 
     else
     {
-        ErrorPopup *Dialog = new ErrorPopup("Nome già in uso", this);
+        ErrorPopup *Dialog = new ErrorPopup("Name is already in use", this);
         Dialog->show();
     }
 }
@@ -145,7 +141,7 @@ void MainWindow::onCheckSensor() // check nome sensore non doppio o vuoto nell'e
     }
     else
     {
-        ErrorPopup *errorPopup = new ErrorPopup("Nome già in uso");
+        ErrorPopup *errorPopup = new ErrorPopup("Name is already in use");
         errorPopup->show();
     }
 }
@@ -194,7 +190,7 @@ void MainWindow::onAddValToSensor(const double& time, const double& val) // aggi
         }
         else
         {
-            ErrorPopup *errorPopup = new ErrorPopup("Esiste già un valore in quell'istante");
+            ErrorPopup *errorPopup = new ErrorPopup("A value is already present at that specific time");
             errorPopup->show();
         }
     }
@@ -218,7 +214,7 @@ void MainWindow::onDeleteAllValues() // rimozione di tutti i valori
 //  DISPLAY INFO SENSORE SU WIDGET
 //  ------------------------------
 
-void MainWindow::displayInfo(AbstractSensor *sensor) // mostraggio info del sensore
+void MainWindow::displayInfo(AbstractSensor *sensor) // display info del sensore
 {
     if (!sensor)
     {
@@ -349,7 +345,7 @@ std::vector<AbstractSensor *> MainWindow::loadSensors(const QString &filename)
         return {};
     }
 
-    searchWidget->deleteAllClicked();
+    searchWidget->loadDeleteAll();
 
     QByteArray data = file.readAll();
     file.close();
@@ -413,7 +409,7 @@ void MainWindow::onDeleteAll() // delete tutti i bottoni
     chart->resetChart();
 }
 
-void MainWindow::onSensorDeleted() // delete bottone singolo
+void MainWindow::onSensorDeleted() // delete sensore singolo
 {
     searchWidget->setFocus(nullptr);
     info->clearText();

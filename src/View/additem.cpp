@@ -34,7 +34,7 @@ void AddItem::on_AddButtonDiag_clicked()
     if (sensorName.isEmpty())
     {
         // finestra messaggio d'errore
-        ErrorPopup *errorPopup = new ErrorPopup("Il campo nome non può essere vuoto", this);
+        ErrorPopup *errorPopup = new ErrorPopup("The sensor's name cannot be empty", this);
         errorPopup->show();
     }
 

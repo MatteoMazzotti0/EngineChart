@@ -24,6 +24,7 @@ public:
     void reloadUI();
     void setFocus(AbstractSensor*);
     void update(AbstractSensor*, string);
+    void loadDeleteAll();
     AbstractSensor* getFocus();
     ~SearchAddWidget();
 signals:

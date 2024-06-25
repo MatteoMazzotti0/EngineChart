@@ -30,7 +30,7 @@ EditItem::~EditItem()
 
 void EditItem::onOkClicked()
 {
-    // check nome sensore non vuoto (gli spazi vengono rimossi)
+    // check nome sensore non vuoto
     if (QString(ui->newName->text().trimmed()).isEmpty())
     {
         // finestra messaggio d'errore
