@@ -18,7 +18,7 @@ AddItem::AddItem(QWidget *parent) : QDialog(parent), ui(new Ui::AddItem)
     QRegularExpression regExp("[\\p{L}0-9]*");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(regExp, this);
     ui->NameLine->setValidator(validator);
-    ui->NameLine->setMaxLength(20);
+    ui->NameLine->setMaxLength(25);
 }
 
 AddItem::~AddItem()

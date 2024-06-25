@@ -16,7 +16,7 @@ EditItem::EditItem(AbstractSensor *sensor, QWidget *parent) : QDialog(parent), u
     QRegularExpression regExp("[a-zA-Z0-9]*");
     QRegularExpressionValidator *validator = new QRegularExpressionValidator(regExp, this);
     ui->newName->setValidator(validator);
-    ui->newName->setMaxLength(2);
+    ui->newName->setMaxLength(25);
 
     connect(ui->btn_ok, &QPushButton::clicked, this, &EditItem::onOkClicked);
     connect(ui->btn_cancel, &QPushButton::clicked, this, &EditItem::onCancelClicked);

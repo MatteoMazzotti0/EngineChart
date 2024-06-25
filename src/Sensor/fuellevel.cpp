@@ -40,7 +40,6 @@ void FuelLevel::deleteVal(const unsigned int &time, const unsigned int &val)
             if ((*it).time() == time && (*it).value() == val)
             {
                 values.erase(it);
-                values.shrink_to_fit();
                 return;
             }
         }
