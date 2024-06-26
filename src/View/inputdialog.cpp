@@ -1,7 +1,7 @@
 #include "inputdialog.h"
 #include "ui_inputdialog.h"
 
-InputDialog::InputDialog(QWidget *parent) : QDialog(parent), ui(new Ui::InputDialog)
+InputDialog::InputDialog(QWidget *parent, const int& min, const int& max) : QDialog(parent), ui(new Ui::InputDialog)
 {
     ui->setupUi(this);
     this->setWindowIcon(QIcon(":/Icons/src/Resources/appIcon.png"));
@@ -11,10 +11,12 @@ InputDialog::InputDialog(QWidget *parent) : QDialog(parent), ui(new Ui::InputDia
     ui->timeBox->setSingleStep(1);
     ui->timeBox->setValue(0);
 
-    ui->valueBox->setMinimum(-100);
-    ui->valueBox->setMaximum(100);
+    ui->valueBox->setMinimum(min);
+    ui->valueBox->setMaximum(max);
     ui->valueBox->setSingleStep(1);
     ui->valueBox->setValue(0);
+
+    ui->label_minMax->setText("(" + QString::number(min) + " - " + QString::number(max) + ")");
 
     connect(ui->btn_ok, &QPushButton::clicked, this, [this]() {
         emit addValToSensor(ui->timeBox->value(), ui->valueBox->value());

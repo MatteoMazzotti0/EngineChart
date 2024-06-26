@@ -13,7 +13,7 @@ class InputDialog : public QDialog
     Q_OBJECT
 
   public:
-    explicit InputDialog(QWidget *parent = nullptr);
+    explicit InputDialog(QWidget *parent = nullptr, const int &min = 0, const int &max = 0);
     ~InputDialog();
     double getValue() const;
     double getTime() const;

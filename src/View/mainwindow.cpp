@@ -175,7 +175,8 @@ void MainWindow::onUpdateChart()
 
 void MainWindow::onNewValue() // creazione finestra per input
 {
-    inputVal = new InputDialog();
+    AbstractSensor* sensor = searchWidget->getFocus();
+    inputVal = new InputDialog(inspectWnd, sensor->getmin(), sensor->getmax());
     connect(inputVal, &InputDialog::addValToSensor, this, &MainWindow::onAddValToSensor);
     inputVal->show();
 }
@@ -226,7 +227,7 @@ void MainWindow::displayInfo(AbstractSensor *sensor) // display info del sensore
     sensor->accept(visitor);
     info->setType(QString::fromStdString(visitor->getType()));
     info->setDesc(QString::fromStdString(sensor->getdesc()));
-
+    info->setMinMax(QString::number(sensor->getmin()), QString::number(sensor->getmax()));;
     info->clearLayout();
 
     if (splitterStatus == false)

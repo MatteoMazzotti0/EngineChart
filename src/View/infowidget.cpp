@@ -11,9 +11,14 @@ InfoWidget::InfoWidget(QWidget *parent) : QWidget(parent), ui(new Ui::InfoWidget
     ui->NameDisplay->setAttribute(Qt::WA_TranslucentBackground);
     ui->TypeDisplay->setAttribute(Qt::WA_TranslucentBackground);
     ui->DescDisplay->setAttribute(Qt::WA_TranslucentBackground);
+    ui->MaxDisplay->setAttribute(Qt::WA_TranslucentBackground);
+    ui->MinDisplay->setAttribute(Qt::WA_TranslucentBackground);
+
     ui->NameDisplay->setStyleSheet("QTextEdit { background: transparent; }");
     ui->TypeDisplay->setStyleSheet("QTextEdit { background: transparent; }");
     ui->DescDisplay->setStyleSheet("QTextEdit { background: transparent; }");
+    ui->MaxDisplay->setStyleSheet("QLineEdit { background: transparent; }");
+    ui->MinDisplay->setStyleSheet("QLineEdit { background: transparent; }");
 
     connect(ui->btn_inspect, &QPushButton::clicked, this, [this]() { emit inspectSensor(); });
     connect(ui->btn_edit, &QPushButton::clicked, this, [this]() { emit editSensor(); });
@@ -42,6 +47,12 @@ void InfoWidget::setDesc(const QString &desc)
     ui->DescDisplay->setText(desc);
 }
 
+void InfoWidget::setMinMax(const QString &min, const QString &max)
+{
+    ui->MinDisplay->setText(min);
+    ui->MaxDisplay->setText(max);
+
+}
 InfoWidget::~InfoWidget()
 {
     delete ui;
