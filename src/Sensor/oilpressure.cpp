@@ -124,3 +124,8 @@ void OilPressure::setButton(SensorVisitor *visitor) const
 {
     return visitor->setButtonFor(this);
 }
+
+void OilPressure::setUnitMeasure(SensorVisitor *visitor) const
+{
+    return visitor->setUnitMeasure(this);
+}

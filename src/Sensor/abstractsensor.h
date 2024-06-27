@@ -41,6 +41,7 @@ class AbstractSensor
     // Visitor
     virtual void accept(SensorVisitor *visitor) const = 0;
     virtual void setButton(SensorVisitor *visitor) const = 0;
+    virtual void setUnitMeasure(SensorVisitor *visitor) const = 0;
 };
 
 bool order(const DataType<unsigned int> &a, const DataType<unsigned int> &b);

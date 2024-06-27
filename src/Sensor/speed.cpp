@@ -109,3 +109,8 @@ void VehicleSpeed::setButton(SensorVisitor *visitor) const
 {
     return visitor->setButtonFor(this);
 }
+
+void VehicleSpeed::setUnitMeasure(SensorVisitor *visitor) const
+{
+    return visitor->setUnitMeasure(this);
+}

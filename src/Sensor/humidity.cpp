@@ -98,3 +98,8 @@ void HumiditySensor::setButton(SensorVisitor *visitor) const
 {
     return visitor->setButtonFor(this);
 }
+
+void HumiditySensor::setUnitMeasure(SensorVisitor *visitor) const
+{
+    return visitor->setUnitMeasure(this);
+}

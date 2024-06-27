@@ -4,33 +4,38 @@
 #include "qlabel.h"
 #include "qlineedit.h"
 
-ConcreteVisitor::ConcreteVisitor()
-{
-}
+ConcreteVisitor::ConcreteVisitor(){}
+
+ConcreteVisitor::~ConcreteVisitor(){}
 
 void ConcreteVisitor::visit([[maybe_unused]]const HumiditySensor *sensor)
 {
     this->type = "Humidity";
+    setUnitMeasure(sensor);
 }
 
 void ConcreteVisitor::visit([[maybe_unused]] const TempSensor *sensor)
 {
     this->type = "Temperature";
+    setUnitMeasure(sensor);
 }
 
 void ConcreteVisitor::visit([[maybe_unused]] const OilPressure *sensor)
 {
     this->type = "Oil Pressure";
+    setUnitMeasure(sensor);
 }
 
 void ConcreteVisitor::visit([[maybe_unused]] const FuelLevel *sensor)
 {
     this->type = "Fuel Level";
+    setUnitMeasure(sensor);
 }
 
 void ConcreteVisitor::visit([[maybe_unused]] const VehicleSpeed *sensor)
 {
     this->type = "Vehicle Speed";
+    setUnitMeasure(sensor);
 }
 
 
@@ -111,6 +116,31 @@ void ConcreteVisitor::setButtonFor(const VehicleSpeed *sensor)
     this->button = newButton;
 }
 
+void ConcreteVisitor::setUnitMeasure([[maybe_unused]]const HumiditySensor *sensor)
+{
+    this->measureUnit = "%";
+}
+
+void ConcreteVisitor::setUnitMeasure([[maybe_unused]]const TempSensor *sensor)
+{
+    this->measureUnit = "°C";
+}
+
+void ConcreteVisitor::setUnitMeasure([[maybe_unused]]const OilPressure *sensor)
+{
+    this->measureUnit = "bar";
+}
+
+void ConcreteVisitor::setUnitMeasure([[maybe_unused]]const FuelLevel *sensor)
+{
+    this->measureUnit = "L";
+}
+
+void ConcreteVisitor::setUnitMeasure([[maybe_unused]]const VehicleSpeed *sensor)
+{
+    this->measureUnit = "Km/h";
+}
+
 
 QPushButton *ConcreteVisitor::getButton() const
 {
@@ -120,4 +150,9 @@ QPushButton *ConcreteVisitor::getButton() const
 string ConcreteVisitor::getType() const
 {
     return this->type;
+}
+
+string ConcreteVisitor::getUnitOfMeasure() const
+{
+    return this->measureUnit;
 }

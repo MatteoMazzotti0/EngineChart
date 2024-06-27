@@ -1,3 +1,4 @@
+
 #ifndef TEMPERATURE_H
 #define TEMPERATURE_H
 #include "../DataType/datatype.h"
@@ -21,5 +22,6 @@ class TempSensor : public AbstractSensor
     void simulation() override;
     virtual void accept(SensorVisitor *visitor) const override;
     virtual void setButton(SensorVisitor *visitor) const override;
+    virtual void setUnitMeasure(SensorVisitor *visitor) const override;
 };
 #endif

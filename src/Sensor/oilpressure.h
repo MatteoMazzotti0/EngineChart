@@ -22,5 +22,6 @@ class OilPressure : public AbstractSensor
     virtual void simulation() override;
     virtual void accept(SensorVisitor *visitor) const override;
     virtual void setButton(SensorVisitor *visitor) const override;
+    virtual void setUnitMeasure(SensorVisitor *visitor) const override;
 };
 #endif

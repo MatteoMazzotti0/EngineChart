@@ -124,3 +124,8 @@ void TempSensor::setButton(SensorVisitor *visitor) const
 {
     return visitor->setButtonFor(this);
 }
+
+void TempSensor::setUnitMeasure(SensorVisitor *visitor) const
+{
+    return visitor->setUnitMeasure(this);
+}

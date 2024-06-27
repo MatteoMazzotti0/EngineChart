@@ -101,3 +101,9 @@ void FuelLevel::setButton(SensorVisitor *visitor) const
 {
     return visitor->setButtonFor(this);
 }
+
+void FuelLevel::setUnitMeasure(SensorVisitor *visitor) const
+{
+    return visitor->setUnitMeasure(this);
+}
+
