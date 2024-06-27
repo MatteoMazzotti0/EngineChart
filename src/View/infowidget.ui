@@ -65,13 +65,13 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>45</width>
+            <width>50</width>
             <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>40</width>
+            <width>50</width>
             <height>27</height>
            </size>
           </property>
@@ -355,13 +355,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <property name="minimumSize">
            <size>
-            <width>0</width>
+            <width>50</width>
             <height>27</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>35</width>
+            <width>50</width>
             <height>27</height>
            </size>
           </property>
