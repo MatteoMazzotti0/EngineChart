@@ -227,7 +227,7 @@ void MainWindow::displayInfo(AbstractSensor *sensor) // display info del sensore
     sensor->accept(visitor);
     info->setType(QString::fromStdString(visitor->getType()));
     info->setDesc(QString::fromStdString(sensor->getdesc()));
-    info->setMinMax(QString::number(sensor->getmin()), QString::number(sensor->getmax()));;
+    info->setMinMax(QString::number(sensor->getmin()), QString::number(sensor->getmax()), QString::fromStdString(visitor->getUnitOfMeasure()));;
     info->clearLayout();
 
     if (splitterStatus == false)

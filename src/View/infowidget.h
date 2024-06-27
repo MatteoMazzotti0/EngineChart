@@ -23,7 +23,7 @@ class InfoWidget : public QWidget
     void setName(const QString &name);
     void setType(const QString &type);
     void setDesc(const QString &);
-    void setMinMax(const QString& min, const QString &max);
+    void setMinMax(const QString& min, const QString &max, const QString &unit);
     void clearText();
     void clearLayout();
     QVBoxLayout *getWidgetLayout();
