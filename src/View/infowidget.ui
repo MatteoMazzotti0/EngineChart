@@ -275,24 +275,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="MinDisplay">
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>0</height>
-              </size>
+            <widget class="QTextEdit" name="MinDisplay">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="maximumSize">
               <size>
-               <width>50</width>
-               <height>16777215</height>
+               <width>70</width>
+               <height>30</height>
               </size>
              </property>
-             <property name="frame">
-              <bool>false</bool>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
              </property>
-             <property name="readOnly">
-              <bool>true</bool>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustIgnored</enum>
              </property>
             </widget>
            </item>
@@ -308,24 +314,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="MaxDisplay">
-             <property name="minimumSize">
-              <size>
-               <width>50</width>
-               <height>0</height>
-              </size>
+            <widget class="QTextEdit" name="MaxDisplay">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
              <property name="maximumSize">
               <size>
-               <width>50</width>
-               <height>16777215</height>
+               <width>70</width>
+               <height>30</height>
               </size>
              </property>
-             <property name="frame">
-              <bool>false</bool>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
              </property>
-             <property name="readOnly">
-              <bool>true</bool>
+             <property name="verticalScrollBarPolicy">
+              <enum>Qt::ScrollBarAlwaysOff</enum>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContents</enum>
              </property>
             </widget>
            </item>

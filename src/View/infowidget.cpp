@@ -17,8 +17,8 @@ InfoWidget::InfoWidget(QWidget *parent) : QWidget(parent), ui(new Ui::InfoWidget
     ui->NameDisplay->setStyleSheet("QTextEdit { background: transparent; }");
     ui->TypeDisplay->setStyleSheet("QTextEdit { background: transparent; }");
     ui->DescDisplay->setStyleSheet("QTextEdit { background: transparent; }");
-    ui->MaxDisplay->setStyleSheet("QLineEdit { background: transparent; }");
-    ui->MinDisplay->setStyleSheet("QLineEdit { background: transparent; }");
+    ui->MaxDisplay->setStyleSheet("QTextEdit { background: transparent; }");
+    ui->MinDisplay->setStyleSheet("QTextEdit { background: transparent; }");
 
     connect(ui->btn_inspect, &QPushButton::clicked, this, [this]() { emit inspectSensor(); });
     connect(ui->btn_edit, &QPushButton::clicked, this, [this]() { emit editSensor(); });
