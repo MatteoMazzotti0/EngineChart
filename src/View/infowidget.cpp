@@ -30,6 +30,8 @@ void InfoWidget::clearText()
     ui->NameDisplay->clear();
     ui->TypeDisplay->clear();
     ui->DescDisplay->clear();
+    ui->MaxDisplay->clear();
+    ui->MinDisplay->clear();
 }
 
 void InfoWidget::setName(const QString &name)
@@ -47,10 +49,10 @@ void InfoWidget::setDesc(const QString &desc)
     ui->DescDisplay->setText(desc);
 }
 
-void InfoWidget::setMinMax(const QString &min, const QString &max)
+void InfoWidget::setMinMax(const QString &min, const QString &max, const QString &unit)
 {
-    ui->MinDisplay->setText(min);
-    ui->MaxDisplay->setText(max);
+    ui->MinDisplay->setText(min+unit);
+    ui->MaxDisplay->setText(max+unit);
 
 }
 InfoWidget::~InfoWidget()

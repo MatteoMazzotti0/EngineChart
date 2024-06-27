@@ -63,7 +63,7 @@ void ChartDisplayWidget::resetChart()
 {
     QLineSeries *values = new QLineSeries();
 
-    //Reset grafico
+    // reset grafico
     chartView->chart()->removeAllSeries();
     if(!chartView->chart()->axes().empty())
     {
@@ -75,15 +75,17 @@ void ChartDisplayWidget::resetChart()
 
     }
 
-    //Titolo e rimozione legenda
+    // titolo e rimozione legenda
     chartView->chart()->legend()->hide();
     chartView->chart()->setTitle("Sensor values");
 
-    //Creazione assi
+    // asse X
     auto axisX = new QValueAxis;
     axisX->setTickCount(10);
     chartView->chart()->addAxis(axisX, Qt::AlignBottom);
     chartView->chart()->addSeries(values);
+
+    // asse Y
     auto axisY = new QValueAxis;
     axisY->setLinePenColor(values->pen().color());
     chartView->chart()->addAxis(axisY, Qt::AlignLeft);
