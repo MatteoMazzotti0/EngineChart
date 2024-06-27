@@ -9,7 +9,7 @@ HumiditySensor::~HumiditySensor()
 {
 }
 
-DataType<unsigned int> HumiditySensor::getValueAt(const int &pos) const
+DataType<int> HumiditySensor::getValueAt(const int &pos) const
 {
     return values[pos];
 }
@@ -19,7 +19,7 @@ void HumiditySensor::deleteAllValues()
     values.clear();
 }
 
-void HumiditySensor::deleteVal(const unsigned int &time, const unsigned int &val)
+void HumiditySensor::deleteVal(const int &time, const int &val)
 {
     if (values.size() == 1)
     {
@@ -40,7 +40,7 @@ void HumiditySensor::deleteVal(const unsigned int &time, const unsigned int &val
     }
 }
 
-bool HumiditySensor::insertNewVal(const double &time, const double &val)
+bool HumiditySensor::insertNewVal(const int &time, const int &val)
 {
     for (auto it = values.begin(); it != values.end(); it++)
     {
@@ -50,7 +50,7 @@ bool HumiditySensor::insertNewVal(const double &time, const double &val)
         }
     }
 
-    values.push_back(DataType<unsigned int>(time, val));
+    values.push_back(DataType<int>(time, val));
     sort(values.begin(), values.end(), order);
 
     return true;
@@ -65,22 +65,22 @@ void HumiditySensor::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = getmin(); // 20
-    const unsigned int maxValue = getmax(); // 80
-    const unsigned int maxStep = 2;  // variazione per step
+    const int minValue = getmin(); // 20
+    const int maxValue = getmax(); // 80
+    const int maxStep = 2;  // variazione per step
 
-    unsigned int lastValue = rand() % (maxValue - minValue + 1) + minValue; // valore iniziale casuale nel range
+    int lastValue = rand() % (maxValue - minValue + 1) + minValue; // valore iniziale casuale nel range
 
-    for (unsigned int i = 0; i < 100; i++)
+    for (int i = 0; i < 100; i++)
     {
         // variazione creata con un range tra un rand e l'altro
         int change = (rand() % (2 * maxStep + 1)) - maxStep;
         int tempValue = static_cast<int>(lastValue) + change;
 
         //check che il valore nuovo sia nel range
-        unsigned int newValue = tempValue < static_cast<int>(minValue) ? minValue :
+        int newValue = tempValue < static_cast<int>(minValue) ? minValue :
                                 tempValue > static_cast<int>(maxValue) ? maxValue :
-                                            static_cast<unsigned int>(tempValue);
+                                            static_cast<int>(tempValue);
 
         DataType temp(i, newValue);
         values.push_back(temp);

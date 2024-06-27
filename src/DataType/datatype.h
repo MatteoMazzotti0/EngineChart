@@ -4,12 +4,12 @@
 template <typename T> class DataType
 {
   private:
-    unsigned int timestamp;
+    int timestamp;
     T val;
 
   public:
-    DataType(unsigned int = 0, T = 0);
-    unsigned int time() const;
+    DataType(int = 0, T = 0);
+    int time() const;
     T value() const;
 };
 

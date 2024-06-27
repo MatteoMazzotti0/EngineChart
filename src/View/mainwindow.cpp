@@ -181,7 +181,7 @@ void MainWindow::onNewValue() // creazione finestra per input
     inputVal->show();
 }
 
-void MainWindow::onAddValToSensor(const double& time, const double& val) // aggiunta valore
+void MainWindow::onAddValToSensor(const int& time, const int& val) // aggiunta valore
 {
     if (searchWidget->getFocus() != nullptr)
     {
@@ -197,7 +197,7 @@ void MainWindow::onAddValToSensor(const double& time, const double& val) // aggi
     }
 }
 
-void MainWindow::onRequestDeleteVal(const unsigned int& time, const unsigned int& val) // rimozione valore
+void MainWindow::onRequestDeleteVal(const int& time, const int& val) // rimozione valore
 {
     if (searchWidget->getFocus() != nullptr)
     {
@@ -289,8 +289,8 @@ QJsonObject MainWindow::sensorToJson(AbstractSensor *sensor)
     {
         auto value = sensor->getValueAt(i);
         QJsonObject valueObject;
-        valueObject["time"] = static_cast<double>(value.time());
-        valueObject["value"] = static_cast<double>(value.value());
+        valueObject["time"] = static_cast<int>(value.time());
+        valueObject["value"] = static_cast<int>(value.value());
         valuesArray.append(valueObject);
     }
 
@@ -312,8 +312,8 @@ AbstractSensor *MainWindow::jsonToSensor(const QJsonObject &json)
     for (const auto &value : valuesArray)
     {
         QJsonObject valueObject = value.toObject();
-        unsigned int time = static_cast<unsigned int>(valueObject["time"].toDouble());
-        unsigned int val = static_cast<unsigned int>(valueObject["value"].toDouble());
+        int time = static_cast<int>(valueObject["time"].toInt());
+        int val = static_cast<int>(valueObject["value"].toInt());
         sensor->insertNewVal(time, val);
     }
 

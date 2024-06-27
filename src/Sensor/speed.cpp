@@ -16,12 +16,12 @@ int VehicleSpeed::countValues() const
     return counter;
 }
 
-DataType<unsigned int> VehicleSpeed::getValueAt(const int &pos) const
+DataType<int> VehicleSpeed::getValueAt(const int &pos) const
 {
     return values[pos];
 }
 
-void VehicleSpeed::deleteVal(const unsigned int &time, const unsigned int &val)
+void VehicleSpeed::deleteVal(const int &time, const int &val)
 {
     if (values.size() == 1)
     {
@@ -47,7 +47,7 @@ void VehicleSpeed::deleteAllValues()
     values.clear();
 }
 
-bool VehicleSpeed::insertNewVal(const double &time, const double &val)
+bool VehicleSpeed::insertNewVal(const int &time, const int &val)
 {
     for (auto it = values.begin(); it != values.end(); it++)
     {
@@ -57,7 +57,7 @@ bool VehicleSpeed::insertNewVal(const double &time, const double &val)
         }
     }
 
-    values.push_back(DataType<unsigned int>(time, val));
+    values.push_back(DataType<int>(time, val));
     sort(values.begin(), values.end(), order);
 
     return true;
@@ -67,34 +67,34 @@ void VehicleSpeed::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = getmin(); // 0
-    const unsigned int maxValue = getmax(); // 220
+    const int minValue = getmin(); // 0
+    const int maxValue = getmax(); // 220
 
-    unsigned int currentValue = minValue;   // parto da 0
+    int currentValue = minValue;   // parto da 0
     values.push_back(currentValue);
 
-    for (unsigned int i = 0; i < 70; i++)
+    for (int i = 0; i < 70; i++)
     {
         int decision = rand() % 2; // il valore aumenta o resta costante
 
         if (decision == 1) // velocità aumenta
         {
-            unsigned int increase = rand() % 10 + 1; // aumento casuale tra 1 e 10
+            int increase = rand() % 10 + 1; // aumento casuale tra 1 e 10
 
-            unsigned int newValue = currentValue + increase;
+            int newValue = currentValue + increase;
 
             // check valore nel range
             if (newValue > maxValue)
                 newValue = maxValue;
 
-            DataType temp(i, newValue);
+            DataType<int> temp(i, newValue);
             values.push_back(temp);
 
             currentValue = newValue;
         }
         else // velocità costante
         {
-            DataType temp(i, currentValue);
+            DataType<int> temp(i, currentValue);
             values.push_back(temp);
         }
     }

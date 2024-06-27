@@ -11,7 +11,7 @@ int FuelLevel::countValues() const
     return counter;
 }
 
-bool FuelLevel::insertNewVal(const double &time, const double &val)
+bool FuelLevel::insertNewVal(const int &time, const int &val)
 {
     for (auto it = values.begin(); it != values.end(); it++)
     {
@@ -21,13 +21,13 @@ bool FuelLevel::insertNewVal(const double &time, const double &val)
         }
     }
 
-    values.push_back(DataType<unsigned int>(time, val));
+    values.push_back(DataType<int>(time, val));
     sort(values.begin(), values.end(), order);
 
     return true;
 }
 
-void FuelLevel::deleteVal(const unsigned int &time, const unsigned int &val)
+void FuelLevel::deleteVal(const int &time, const int &val)
 {
     if (values.size() == 1)
     {
@@ -51,7 +51,7 @@ void FuelLevel::deleteAllValues()
     values.clear();
 }
 
-DataType<unsigned int> FuelLevel::getValueAt(const int &pos) const
+DataType<int> FuelLevel::getValueAt(const int &pos) const
 {
     return values[pos];
 }
@@ -69,23 +69,23 @@ void FuelLevel::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = getmin(); // 0;
-    const unsigned int maxValue = getmax(); // 90; litri serbatoio
+    const int minValue = getmin(); // 0;
+    const int maxValue = getmax(); // 90; litri serbatoio
 
-  unsigned int lastValue = rand() % (maxValue - 80 + 1) + 80; // parte con serbatoio più o meno pieno
+  int lastValue = rand() % (maxValue - 80 + 1) + 80; // parte con serbatoio più o meno pieno
 
-    for (unsigned int i = 0; i < 100; i++)
+    for (int i = 0; i < 100; i++)
     {
-        unsigned int variation = rand() % 2; // Variazione casuale tra 0 e +1
+        int variation = rand() % 2; // Variazione casuale tra 0 e +1
 
         int tempValue = static_cast<int>(lastValue) - variation; // devo fare un check sull cast perchè sia safe
 
         // check che il valore sia nel range
-        unsigned int newValue = tempValue < static_cast<int>(minValue) ? minValue :
+        int newValue = tempValue < static_cast<int>(minValue) ? minValue :
                                     tempValue > static_cast<int>(maxValue) ? maxValue :
-                                    static_cast<unsigned int>(tempValue);
+                                    static_cast<int>(tempValue);
 
-        DataType temp(i, newValue);
+        DataType<int> temp(i, newValue);
         values.push_back(temp);
 
         lastValue = newValue;

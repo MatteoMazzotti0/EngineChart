@@ -11,12 +11,12 @@ int OilPressure::countValues() const
     return counter;
 }
 
-DataType<unsigned int> OilPressure::getValueAt(const int &pos) const
+DataType<int> OilPressure::getValueAt(const int &pos) const
 {
     return values[pos];
 }
 
-void OilPressure::deleteVal(const unsigned int &time, const unsigned int &val)
+void OilPressure::deleteVal(const int &time, const int &val)
 {
     if (values.size() == 1)
     {
@@ -42,7 +42,7 @@ void OilPressure::deleteAllValues()
     values.clear();
 }
 
-bool OilPressure::insertNewVal(const double &time, const double &val)
+bool OilPressure::insertNewVal(const int &time, const int &val)
 {
     for (auto it = values.begin(); it != values.end(); it++)
     {
@@ -52,7 +52,7 @@ bool OilPressure::insertNewVal(const double &time, const double &val)
         }
     }
 
-    values.push_back(DataType<unsigned int>(time, val));
+    values.push_back(DataType<int>(time, val));
     sort(values.begin(), values.end(), order);
 
     return true;
@@ -67,20 +67,20 @@ void OilPressure::simulation()
 {
     values.clear();
 
-    const unsigned int minValue = getmin(); // 10
-    const unsigned int maxValue = getmax(); // 90
+    const int minValue = getmin(); // 10
+    const int maxValue = getmax(); // 90
 
-    unsigned int currentValue = maxValue;
+    int currentValue = maxValue;
 
     bool reachedSpot = false; // check per quando l'olio raggiunge una certa pressione
-    const unsigned int spotPressure = 50; // pressione da raggiungere
+    const int spotPressure = 50; // pressione da raggiungere
 
-    for (unsigned int i = 0; i < 70; i++)
+    for (int i = 0; i < 70; i++)
     {
         if (!reachedSpot) // diminuisco progressivamente i valori fino allo spot
         {
-            unsigned int increase = rand() % 5 + 2;
-            unsigned int newValue = currentValue - increase;
+            int increase = rand() % 5 + 2;
+            int newValue = currentValue - increase;
 
             if (newValue <= spotPressure)
             {
@@ -88,7 +88,7 @@ void OilPressure::simulation()
                 newValue = spotPressure;
             }
 
-            DataType temp(i, newValue);
+            DataType<int> temp(i, newValue);
             values.push_back(temp);
 
             currentValue = newValue;
@@ -97,16 +97,16 @@ void OilPressure::simulation()
         else // una volta raggiunto lo spot riduco la variazione al minimo
         {
 
-            unsigned int variation = rand() % 2; // Variazione casuale tra 0 e 1
+            int variation = rand() % 2; // Variazione casuale tra 0 e 1
 
             int tempValue = static_cast<int>(currentValue) - variation; // devo fare un check sull cast perchè sia safe
 
             // check che il valore sia nel range
-            unsigned int newValue = tempValue < static_cast<int>(minValue) ? minValue :
+            int newValue = tempValue < static_cast<int>(minValue) ? minValue :
                                         tempValue > static_cast<int>(maxValue) ? maxValue :
-                                        static_cast<unsigned int>(tempValue);
+                                        static_cast<int>(tempValue);
 
-            DataType temp(i, newValue);
+            DataType<int> temp(i, newValue);
             values.push_back(temp);
 
             currentValue = newValue;

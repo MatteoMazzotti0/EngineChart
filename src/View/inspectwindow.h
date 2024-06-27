@@ -21,7 +21,7 @@ class InspectWindow : public QDialog
     void newValue();
     void deleteValue();
     void deleteAllValues();
-    void requestDeleteVal(unsigned int, unsigned int);
+    void requestDeleteVal(int, int);
     void updateChart();
 
   private slots:

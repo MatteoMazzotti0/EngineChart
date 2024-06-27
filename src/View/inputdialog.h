@@ -15,10 +15,10 @@ class InputDialog : public QDialog
   public:
     explicit InputDialog(QWidget *parent = nullptr, const int &min = 0, const int &max = 0);
     ~InputDialog();
-    double getValue() const;
-    double getTime() const;
+    int getValue() const;
+    int getTime() const;
   signals:
-    void addValToSensor(const double &value, const double &time);
+    void addValToSensor(const int &value, const int &time);
 
   private slots:
     void on_btn_cancel_clicked();

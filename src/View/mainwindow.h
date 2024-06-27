@@ -43,8 +43,8 @@ class MainWindow : public QMainWindow
     void onInspectSensor();
     void onDataAvailable(AbstractSensor *);
     void onNewValue();
-    void onAddValToSensor(const double &, const double &);
-    void onRequestDeleteVal(const unsigned int &, const unsigned int &);
+    void onAddValToSensor(const int &, const int &);
+    void onRequestDeleteVal(const int &, const int &);
     void onUpdateChart();
     void onEditSensor();
     void onCheckSensor();

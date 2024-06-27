@@ -41,7 +41,7 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target)
         // asse X
         auto axisX = new QValueAxis;
         axisX->setTickCount(10);
-        axisX->setTitleText("(s)");
+        axisX->setTitleText("(min)");
         chartView->chart()->addAxis(axisX, Qt::AlignBottom);
         chartView->chart()->addSeries(series);
 

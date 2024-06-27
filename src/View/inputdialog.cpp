@@ -29,12 +29,12 @@ InputDialog::~InputDialog()
     delete ui;
 }
 
-double InputDialog::getTime() const
+int InputDialog::getTime() const
 {
     return ui->timeBox->value();
 }
 
-double InputDialog::getValue() const
+int InputDialog::getValue() const
 {
     return ui->valueBox->value();
 }

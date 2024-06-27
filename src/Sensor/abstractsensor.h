@@ -24,16 +24,16 @@ class AbstractSensor
     virtual void simulation() = 0;
     virtual int countValues() const = 0;
     // Modificatori valori
-    virtual bool insertNewVal(const double &, const double &) = 0;
-    virtual void deleteVal(const unsigned int &, const unsigned int &) = 0;
+    virtual bool insertNewVal(const int &, const int &) = 0;
+    virtual void deleteVal(const int &, const int &) = 0;
     virtual void deleteAllValues() = 0;
     // Setters
     void setname(const string &);
     void setdesc(const string &);
-    void setmax(const unsigned int &);
-    void setmin(const unsigned int &);
+    void setmax(const int &);
+    void setmin(const int &);
     // Getters
-    virtual DataType<unsigned int> getValueAt(const int &) const = 0;
+    virtual DataType<int> getValueAt(const int &) const = 0;
     string getname() const;
     string getdesc() const;
     int getmin() const;
@@ -44,6 +44,6 @@ class AbstractSensor
     virtual void setUnitMeasure(SensorVisitor *visitor) const = 0;
 };
 
-bool order(const DataType<unsigned int> &a, const DataType<unsigned int> &b);
+bool order(const DataType<int> &a, const DataType<int> &b);
 
 #endif

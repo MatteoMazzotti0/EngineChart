@@ -9,14 +9,14 @@ class SensorVisitor;
 class TempSensor : public AbstractSensor
 {
   private:
-    vector<DataType<unsigned int>> values; // °C
+    vector<DataType<int>> values; // °C
 
   public:
     TempSensor(const string & = "", const string & = "");
     virtual int countValues() const override;
-    virtual DataType<unsigned int> getValueAt(const int &) const override;
-    virtual bool insertNewVal(const double &, const double &) override;
-    virtual void deleteVal(const unsigned int &, const unsigned int &) override;
+    virtual DataType<int> getValueAt(const int &) const override;
+    virtual bool insertNewVal(const int &, const int &) override;
+    virtual void deleteVal(const int &, const int &) override;
     virtual void deleteAllValues() override;
     virtual ~TempSensor() = default;
     void simulation() override;

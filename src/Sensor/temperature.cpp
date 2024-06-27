@@ -2,7 +2,7 @@
 #include "../Visitor/sensorvisitor.h"
 #include <cstdlib>
 
-TempSensor::TempSensor(const string &n, const string &d) : AbstractSensor(n, d, 0, 120)
+TempSensor::TempSensor(const string &n, const string &d) : AbstractSensor(n, d, -10, 120)
 {
 }
 
@@ -16,12 +16,12 @@ int TempSensor::countValues() const
     return counter;
 }
 
-DataType<unsigned int> TempSensor::getValueAt(const int &pos) const
+DataType<int> TempSensor::getValueAt(const int &pos) const
 {
     return values[pos];
 }
 
-void TempSensor::deleteVal(const unsigned int &time, const unsigned int &val)
+void TempSensor::deleteVal(const int &time, const int &val)
 {
     if (values.size() == 1)
     {
@@ -47,7 +47,7 @@ void TempSensor::deleteAllValues()
     values.clear();
 }
 
-bool TempSensor::insertNewVal(const double &time, const double &val)
+bool TempSensor::insertNewVal(const int &time, const int &val)
 {
     for (auto it = values.begin(); it != values.end(); it++)
     {
@@ -57,7 +57,7 @@ bool TempSensor::insertNewVal(const double &time, const double &val)
         }
     }
 
-    values.push_back(DataType<unsigned int>(time, val));
+    values.push_back(DataType<int>(time, val));
     sort(values.begin(), values.end(), order);
 
     return true;
@@ -67,20 +67,20 @@ void TempSensor::simulation()
 {
     values.clear();
 
-    const unsigned int minTemperature = getmin(); // 0
-    const unsigned int maxTemperature = getmax(); // 120
+    const int minTemperature = getmin(); // -10
+    const int maxTemperature = getmax(); // 120
 
-    unsigned int currentValue = rand() % 20; // parte da temperature ambiente varie
+    int currentValue = rand() % 20 -10 ; // parte da temperature ambiente varie
 
     bool reachedSpot = false;                // check per quando il motore raggiunge la temperatura ideale
-    const unsigned int spotTemperature = 90; // temperatura da raggiungere
+    const int spotTemperature = 90; // temperatura da raggiungere
 
-    for (unsigned int i = 0; i < 70; i++)
+    for (int i = 0; i < 70; i++)
     {
         if (!reachedSpot) // aumento progressivamente i valori fino a raggiugnere lo spot
         {
-            unsigned int increase = rand() % 7 + 2;
-            unsigned int newValue = currentValue + increase;
+            int increase = rand() % 7 + 10;
+            int newValue = currentValue + increase;
 
             if (newValue >= spotTemperature)
             {
@@ -88,7 +88,7 @@ void TempSensor::simulation()
                 newValue = spotTemperature;
             }
 
-            DataType temp(i, newValue);
+            DataType<int> temp(i, newValue);
             values.push_back(temp);
 
             currentValue = newValue;
@@ -97,17 +97,17 @@ void TempSensor::simulation()
         else // una volta raggiunto lo spot riduco la variazione al minimo
         {
 
-            unsigned int variation = rand() % 3 - 1; // Variazione casuale tra -1 e +1
+            int variation = rand() % 3 - 1; // Variazione casuale tra -1 e +1
 
             int tempValue = static_cast<int>(currentValue) + variation; // devo fare un check sull cast perchè sia safe
 
             // check che il valore sia nel range
-            unsigned int newValue = tempValue < static_cast<int>(minTemperature) ? minTemperature
+            int newValue = tempValue < static_cast<int>(minTemperature) ? minTemperature
                                     : tempValue > static_cast<int>(maxTemperature)
                                         ? maxTemperature
-                                        : static_cast<unsigned int>(tempValue);
+                                        : static_cast<int>(tempValue);
 
-            DataType temp(i, newValue);
+            DataType<int> temp(i, newValue);
             values.push_back(temp);
 
             currentValue = newValue;

@@ -23,12 +23,12 @@ void AbstractSensor::setdesc(const string &newDesc)
     this->description = newDesc;
 }
 
-void AbstractSensor::setmax(const unsigned int &newMax)
+void AbstractSensor::setmax(const int &newMax)
 {
     this->max = newMax;
 }
 
-void AbstractSensor::setmin(const unsigned int &newMin)
+void AbstractSensor::setmin(const int &newMin)
 {
     this->min = newMin;
 }
@@ -53,7 +53,7 @@ int AbstractSensor::getmin() const
     return min;
 }
 
-bool order(const DataType<unsigned int> &a, const DataType<unsigned int> &b)
+bool order(const DataType<int> &a, const DataType<int> &b)
 {
     if (a.time() < b.time())
     {
