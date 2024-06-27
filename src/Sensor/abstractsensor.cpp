@@ -1,10 +1,5 @@
 #include "abstractsensor.h"
 #include "../Container/container.h"
-#include "src/Sensor/AbstractSensor.h"
-#include "src/Sensor/humidity.h"
-#include "src/Sensor/oilpressure.h"
-#include "src/Sensor/temperature.h"
-#include "src/Sensor/speed.h"
 
 AbstractSensor::AbstractSensor(const string &n, const string &d, const int &m, const int &ma)
     : name(n), description(d), min(m), max(ma){};
