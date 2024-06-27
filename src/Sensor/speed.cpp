@@ -6,63 +6,6 @@ VehicleSpeed::VehicleSpeed(const string &n, const string &d) : AbstractSensor(n,
 {
 }
 
-int VehicleSpeed::countValues() const
-{
-    int counter = 0;
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        counter++;
-    }
-    return counter;
-}
-
-DataType<int> VehicleSpeed::getValueAt(const int &pos) const
-{
-    return values[pos];
-}
-
-void VehicleSpeed::deleteVal(const int &time, const int &val)
-{
-    if (values.size() == 1)
-    {
-        values.clear();
-    }
-    else
-    {
-        for (auto it = values.begin(); it != values.end(); it++)
-        {
-            if ((*it).time() == time && (*it).value() == val)
-            {
-
-                values.erase(it);
-                values.shrink_to_fit();
-                return;
-            }
-        }
-    }
-}
-
-void VehicleSpeed::deleteAllValues()
-{
-    values.clear();
-}
-
-bool VehicleSpeed::insertNewVal(const int &time, const int &val)
-{
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        if (it->time() == time)
-        {
-            return false;
-        }
-    }
-
-    values.push_back(DataType<int>(time, val));
-    sort(values.begin(), values.end(), order);
-
-    return true;
-}
-
 void VehicleSpeed::simulation()
 {
     values.clear();
@@ -70,7 +13,7 @@ void VehicleSpeed::simulation()
     const int minValue = getmin(); // 0
     const int maxValue = getmax(); // 220
 
-    int currentValue = minValue;   // parto da 0
+    int currentValue = minValue; // parto da 0
     values.push_back(currentValue);
 
     for (int i = 0; i < 70; i++)

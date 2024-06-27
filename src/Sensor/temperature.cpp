@@ -6,63 +6,6 @@ TempSensor::TempSensor(const string &n, const string &d) : AbstractSensor(n, d, 
 {
 }
 
-int TempSensor::countValues() const
-{
-    int counter = 0;
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        counter++;
-    }
-    return counter;
-}
-
-DataType<int> TempSensor::getValueAt(const int &pos) const
-{
-    return values[pos];
-}
-
-void TempSensor::deleteVal(const int &time, const int &val)
-{
-    if (values.size() == 1)
-    {
-        values.clear();
-    }
-    else
-    {
-        for (auto it = values.begin(); it != values.end(); it++)
-        {
-            if ((*it).time() == time && (*it).value() == val)
-            {
-
-                values.erase(it);
-                values.shrink_to_fit();
-                return;
-            }
-        }
-    }
-}
-
-void TempSensor::deleteAllValues()
-{
-    values.clear();
-}
-
-bool TempSensor::insertNewVal(const int &time, const int &val)
-{
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        if (it->time() == time)
-        {
-            return false;
-        }
-    }
-
-    values.push_back(DataType<int>(time, val));
-    sort(values.begin(), values.end(), order);
-
-    return true;
-}
-
 void TempSensor::simulation()
 {
     values.clear();
@@ -70,9 +13,9 @@ void TempSensor::simulation()
     const int minTemperature = getmin(); // -10
     const int maxTemperature = getmax(); // 120
 
-    int currentValue = rand() % 20 -10 ; // parte da temperature ambiente varie
+    int currentValue = rand() % 20 - 10; // parte da temperature ambiente varie
 
-    bool reachedSpot = false;                // check per quando il motore raggiunge la temperatura ideale
+    bool reachedSpot = false;       // check per quando il motore raggiunge la temperatura ideale
     const int spotTemperature = 90; // temperatura da raggiungere
 
     for (int i = 0; i < 70; i++)
@@ -103,9 +46,9 @@ void TempSensor::simulation()
 
             // check che il valore sia nel range
             int newValue = tempValue < static_cast<int>(minTemperature) ? minTemperature
-                                    : tempValue > static_cast<int>(maxTemperature)
-                                        ? maxTemperature
-                                        : static_cast<int>(tempValue);
+                           : tempValue > static_cast<int>(maxTemperature)
+                               ? maxTemperature
+                               : static_cast<int>(tempValue);
 
             DataType<int> temp(i, newValue);
             values.push_back(temp);

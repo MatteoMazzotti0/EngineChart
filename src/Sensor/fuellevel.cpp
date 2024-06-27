@@ -1,60 +1,7 @@
 #include "fuellevel.h"
 #include "../Visitor/sensorvisitor.h"
 
-int FuelLevel::countValues() const
-{
-    int counter = 0;
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        counter++;
-    }
-    return counter;
-}
 
-bool FuelLevel::insertNewVal(const int &time, const int &val)
-{
-    for (auto it = values.begin(); it != values.end(); it++)
-    {
-        if (it->time() == time)
-        {
-            return false;
-        }
-    }
-
-    values.push_back(DataType<int>(time, val));
-    sort(values.begin(), values.end(), order);
-
-    return true;
-}
-
-void FuelLevel::deleteVal(const int &time, const int &val)
-{
-    if (values.size() == 1)
-    {
-        values.clear();
-    }
-    else
-    {
-        for (auto it = values.begin(); it != values.end(); it++)
-        {
-            if ((*it).time() == time && (*it).value() == val)
-            {
-                values.erase(it);
-                return;
-            }
-        }
-    }
-}
-
-void FuelLevel::deleteAllValues()
-{
-    values.clear();
-}
-
-DataType<int> FuelLevel::getValueAt(const int &pos) const
-{
-    return values[pos];
-}
 
 FuelLevel::FuelLevel(const string &n, const string &d)
     : AbstractSensor::AbstractSensor(n, d, 0, 90){
