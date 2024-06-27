@@ -61,7 +61,7 @@ void SearchAddWidget::addButton(AbstractSensor* sensor, SensorVisitor* visitor)
 }
 
 
-void SearchAddWidget::editButton(string newname, string oldname)
+void SearchAddWidget::editButton(const string& newname, const string& oldname)
 {
     for(auto it = buttons.begin();it!=buttons.end();it++)
     {

@@ -27,9 +27,9 @@ class InspectWindow : public QDialog
   private slots:
     void onDeleteValue();
 
-    void on_TimeView_currentRowChanged(int currentRow);
+    void on_TimeView_currentRowChanged(const int& currentRow);
 
-    void on_ValueView_currentRowChanged(int currentRow);
+    void on_ValueView_currentRowChanged(const int& currentRow);
 
   private:
     Ui::InspectWindow *ui;

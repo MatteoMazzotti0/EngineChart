@@ -238,7 +238,7 @@ void MainWindow::displayInfo(AbstractSensor *sensor) // display info del sensore
     }
 }
 
-AbstractSensor *MainWindow::getSensor(const string &name)
+AbstractSensor *MainWindow::getSensor(const string &name) const
 {
     return storage->search(name);
 }
@@ -247,7 +247,7 @@ AbstractSensor *MainWindow::getSensor(const string &name)
 //    SALVATAGGIO E CARICAMENTO
 //  ------------------------------
 
-AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name, const std::string &description)
+AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name, const std::string &description) const
 {
     if (type == "Humidity")
     {
@@ -276,7 +276,7 @@ AbstractSensor *MainWindow::createSensor(const std::string &type, const std::str
     return nullptr;
 }
 
-QJsonObject MainWindow::sensorToJson(AbstractSensor *sensor)
+QJsonObject MainWindow::sensorToJson(const AbstractSensor *sensor) const
 {
     QJsonObject json;
     sensor->accept(visitor);
@@ -298,7 +298,7 @@ QJsonObject MainWindow::sensorToJson(AbstractSensor *sensor)
     return json;
 }
 
-AbstractSensor *MainWindow::jsonToSensor(const QJsonObject &json)
+AbstractSensor *MainWindow::jsonToSensor(const QJsonObject &json) const
 {
     AbstractSensor *sensor = createSensor(json["type"].toString().toStdString(), json["name"].toString().toStdString(),
                                           json["description"].toString().toStdString());
@@ -320,7 +320,7 @@ AbstractSensor *MainWindow::jsonToSensor(const QJsonObject &json)
     return sensor;
 }
 
-void MainWindow::saveSensors(const std::vector<AbstractSensor *> &sensors, const QString &filename)
+void MainWindow::saveSensors(const std::vector<AbstractSensor *> &sensors, const QString &filename) const
 {
     QJsonArray jsonArray;
     for (const auto &sensor : sensors)

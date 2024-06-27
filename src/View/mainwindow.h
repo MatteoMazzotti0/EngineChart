@@ -25,12 +25,12 @@ class MainWindow : public QMainWindow
 
   public:
     MainWindow(QWidget *parent = nullptr);
-    AbstractSensor *createSensor(const std::string &, const std::string &, const std::string &);
-    QJsonObject sensorToJson(AbstractSensor *);
-    AbstractSensor *jsonToSensor(const QJsonObject &);
-    void saveSensors(const std::vector<AbstractSensor *> &, const QString &);
+    AbstractSensor *createSensor(const std::string &, const std::string &, const std::string &) const;
+    QJsonObject sensorToJson(const AbstractSensor *) const;
+    AbstractSensor *jsonToSensor(const QJsonObject &)const;
+    void saveSensors(const std::vector<AbstractSensor *> &, const QString &) const;
     std::vector<AbstractSensor *> loadSensors(const QString &);
-    AbstractSensor *getSensor(const std::string &);
+    AbstractSensor *getSensor(const std::string &) const;
     ~MainWindow();
 
   private slots:

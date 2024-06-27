@@ -20,10 +20,10 @@ private:
 public:
     explicit SearchAddWidget(QWidget *parent = nullptr);
     void addButton(AbstractSensor*, SensorVisitor*);
-    void editButton(string,string);
+    void editButton(const string&,const string&);
     void reloadUI();
     void setFocus(AbstractSensor*);
-    void update(AbstractSensor*, string);
+    void update(const AbstractSensor*, const string&);
     void loadDeleteAll();
     AbstractSensor* getFocus();
     ~SearchAddWidget();

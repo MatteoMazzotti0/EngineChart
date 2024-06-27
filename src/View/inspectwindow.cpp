@@ -59,7 +59,7 @@ void InspectWindow::onDeleteValue()
     }
 }
 
-void InspectWindow::on_TimeView_currentRowChanged(int currentRow)
+void InspectWindow::on_TimeView_currentRowChanged(const int& currentRow)
 {
     if (currentRow != -1)
     {
@@ -68,7 +68,7 @@ void InspectWindow::on_TimeView_currentRowChanged(int currentRow)
     }
 }
 
-void InspectWindow::on_ValueView_currentRowChanged(int currentRow)
+void InspectWindow::on_ValueView_currentRowChanged(const int& currentRow)
 {
     if (currentRow != -1)
     {
