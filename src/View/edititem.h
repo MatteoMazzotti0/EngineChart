@@ -31,7 +31,7 @@ class EditItem : public QDialog
     void onEditAvailable();
 
   signals:
-    void refresh(AbstractSensor *, string oldName);
+    void refresh(AbstractSensor *, const string& oldName);
     void checkSensor();
     void nameNotChanged();
 };
