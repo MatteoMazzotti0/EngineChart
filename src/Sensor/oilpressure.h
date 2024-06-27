@@ -8,9 +8,6 @@ class SensorVisitor;
 
 class OilPressure : public AbstractSensor
 {
-private:
-  vector<DataType<int>> values;
-
 public:
   OilPressure(const string & = "", const string & = "");
   virtual ~OilPressure() = default;
