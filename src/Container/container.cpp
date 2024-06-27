@@ -56,11 +56,13 @@ bool Container::check(const string &newSensorName, const string &oldSensorName) 
 
 void Container::remove(AbstractSensor *Target)
 {
+    bool found = false;
     for (auto it = sensors.begin(); it != sensors.end() && found == false; it++)
     {
         if (Target->getname() == (*it)->getname())
         {
             sensors.erase(it);
+            found=true;
         }
     }
 }
