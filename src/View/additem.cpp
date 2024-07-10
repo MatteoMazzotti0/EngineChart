@@ -31,7 +31,10 @@ AddItem::AddItem(QWidget *parent) : QDialog(parent), ui(new Ui::AddItem)
     ui->NameLine->setValidator(validatorName);
     ui->NameLine->setMaxLength(25);
     ui->MinLine->setValidator(validatorMin);
+    ui->MinLine->setMaxLength(3);
     ui->MaxLine->setValidator(validatorMax);
+    ui->MaxLine->setMaxLength(3);
+
 }
 
 AddItem::~AddItem()
@@ -45,6 +48,7 @@ void AddItem::on_AddButtonDiag_clicked()
     QString sensorName = ui->NameLine->text().trimmed();
     QString sensorMin = ui->MinLine->text().trimmed();
     QString sensorMax = ui->MaxLine->text().trimmed();
+
     if (sensorName.isEmpty())
     {
         // finestra messaggio d'errore
@@ -117,10 +121,16 @@ void AddItem::on_SpeedRadio_toggled(bool checked)
             ui->MinLine->setText("0");
         }
 
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 600)
+        // check min oltre il massimo consentito
+        if(ui->MinLine->text().toInt() > 99)
         {
-            ui->MaxLine->setText("600");
+            ui->MinLine->setText("549");
+        }
+
+        // check max non oltre il limite massimo
+        if(ui->MaxLine->text().toInt() > 550)
+        {
+            ui->MaxLine->setText("550");
         }
 
         // check che max > min
@@ -130,10 +140,10 @@ void AddItem::on_SpeedRadio_toggled(bool checked)
         }
 
         // set validators per valori di velocità consoni
-        QIntValidator *speedMin = new QIntValidator(0, 599, this);
+        QIntValidator *speedMin = new QIntValidator(0, 549, this);
         ui->MinLine->setValidator(speedMin);
 
-        QIntValidator *speedMax = new QIntValidator(ui->MinLine->text().toInt(), 600, this);
+        QIntValidator *speedMax = new QIntValidator(ui->MinLine->text().toInt(), 550, this);
         ui->MaxLine->setValidator(speedMax);
     }
 }
@@ -149,6 +159,12 @@ void AddItem::on_HumRadio_toggled(bool checked)
         if(ui->MinLine->text().toInt() < 0)
         {
             ui->MinLine->setText("0");
+        }
+
+        // check min oltre il massimo consentito
+        if(ui->MinLine->text().toInt() > 99)
+        {
+            ui->MinLine->setText("99");
         }
 
         // check max non oltre il limite massimo
@@ -185,6 +201,12 @@ void AddItem::on_TempRadio_toggled(bool checked)
             ui->MinLine->setText("-20");
         }
 
+        // check min oltre il massimo consentito
+        if(ui->MinLine->text().toInt() > 199)
+        {
+            ui->MinLine->setText("199");
+        }
+
         // check max non oltre il limite massimo
         if(ui->MaxLine->text().toInt() > 200)
         {
@@ -219,6 +241,12 @@ void AddItem::on_PressRadio_toggled(bool checked)
             ui->MinLine->setText("0");
         }
 
+        // check min oltre il massimo consentito
+        if(ui->MinLine->text().toInt() > 99)
+        {
+            ui->MinLine->setText("99");
+        }
+
         // check max non oltre il limite massimo
         if(ui->MaxLine->text().toInt() > 100)
         {
@@ -246,31 +274,38 @@ void AddItem::on_FuelRadio_toggled(bool checked)
     if(checked){
         ui->MinLine->setPlaceholderText("0");
         ui->MaxLine->setPlaceholderText("90");
+
+        // check per valori non negativi del min
+        if(ui->MinLine->text().toInt() < 0)
+        {
+            ui->MinLine->setText("0");
+        }
+
+        // check min oltre il massimo consentito
+        if(ui->MinLine->text().toInt() > 169)
+        {
+            ui->MinLine->setText("169");
+        }
+
+        // check max non oltre il limite massimo
+        if(ui->MaxLine->text().toInt() > 170)
+        {
+            ui->MaxLine->setText("170");
+        }
+
+        // check che max > min
+        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
+        {
+            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
+        }
+
+        // set validators per valori di capienza consoni
+        QIntValidator *tankMin = new QIntValidator(0, 169, this);
+        ui->MinLine->setValidator(tankMin);
+
+        QIntValidator *tankMax = new QIntValidator(ui->MinLine->text().toInt(), 170, this);
+        ui->MaxLine->setValidator(tankMax);
     }
 
-    // check per valori non negativi del min
-    if(ui->MinLine->text().toInt() < 0)
-    {
-        ui->MinLine->setText("0");
-    }
-
-    // check max non oltre il limite massimo
-    if(ui->MaxLine->text().toInt() > 170)
-    {
-        ui->MaxLine->setText("170");
-    }
-
-    // check che max > min
-    if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-    {
-        ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-    }
-
-    // set validators per valori di capienza consoni
-    QIntValidator *tankMin = new QIntValidator(0, 169, this);
-    ui->MinLine->setValidator(tankMin);
-
-    QIntValidator *tankMax = new QIntValidator(ui->MinLine->text().toInt(), 170, this);
-    ui->MaxLine->setValidator(tankMax);
 }
 
