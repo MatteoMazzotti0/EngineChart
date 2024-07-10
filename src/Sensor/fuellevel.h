@@ -12,7 +12,7 @@ class FuelLevel : public AbstractSensor
 public:
   FuelLevel(const string & = "", const string & = "", const int & = 0, const int & = 90);
   virtual ~FuelLevel();
-  virtual void simulation() override;
+  virtual bool simulation() override;
   virtual void accept(SensorVisitor *visitor) const override;
   virtual void setButton(SensorVisitor *visitor) const override;
   virtual void setUnitMeasure(SensorVisitor *visitor) const override;

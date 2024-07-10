@@ -5,7 +5,7 @@ OilPressure::OilPressure(const string &n, const string &d, const int &min, const
 {
 }
 
-void OilPressure::simulation()
+bool OilPressure::simulation()
 {
     values.clear();
 
@@ -16,6 +16,25 @@ void OilPressure::simulation()
 
     bool reachedSpot = false;    // check per quando l'olio raggiunge una certa pressione
     const int spotPressure = 50; // pressione da raggiungere
+
+    if(rand() % 10 == 0) // simulazione difettata 1 volta su 10
+    {
+        for (int i = 0; i < 70; i++)
+        {
+            int increase = rand() % 5 + 2;
+            int newValue = currentValue - increase;
+
+            DataType<int> temp(i, newValue);
+            values.push_back(temp);
+
+            currentValue = newValue;
+
+            if(currentValue <= 0)
+            {
+                return false;
+            }
+        }
+    }
 
     for (int i = 0; i < 70; i++)
     {
@@ -53,6 +72,8 @@ void OilPressure::simulation()
             currentValue = newValue;
         }
     }
+
+    return true;
 }
 
 void OilPressure::accept(SensorVisitor *visitor) const

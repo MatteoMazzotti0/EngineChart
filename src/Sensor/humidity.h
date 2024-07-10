@@ -11,7 +11,7 @@ class HumiditySensor : public AbstractSensor
 public:
   HumiditySensor(const string & = "", const string & = "", const int & = 20, const int & = 80);
   virtual ~HumiditySensor();
-  virtual void simulation() override;
+  virtual bool simulation() override;
   virtual void accept(SensorVisitor *visitor) const override;
   virtual void setButton(SensorVisitor *visitor) const override;
   virtual void setUnitMeasure(SensorVisitor *visitor) const override;

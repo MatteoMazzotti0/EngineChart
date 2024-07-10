@@ -6,7 +6,7 @@ TempSensor::TempSensor(const string &n, const string &d, const int &min, const i
 {
 }
 
-void TempSensor::simulation()
+bool TempSensor::simulation()
 {
     values.clear();
 
@@ -16,7 +16,32 @@ void TempSensor::simulation()
     int currentValue = rand() % 20 - 10; // parte da temperature ambiente varie
 
     bool reachedSpot = false;       // check per quando il motore raggiunge la temperatura ideale
-    const int spotTemperature = 90; // temperatura da raggiungere
+    const int spotTemperature = maxTemperature * 0.7; // temperatura da raggiungere ~70% del massimo
+
+    //  Simulazione sensore non funzionante
+    // -------------------------------------
+
+    if (rand() % 10 == 0)   // in 1 simulazione ogni 10 la temperatura aumenta e basta
+    {
+        for(int i = 0; i < 70; i++)
+        {
+            int increase = rand() % 7 + 10;
+            int newValue = currentValue + increase;
+
+            DataType<int> temp(i, newValue);
+            values.push_back(temp);
+
+            currentValue = newValue;
+
+            if(currentValue > maxTemperature)
+            {
+                return false;
+            }
+        }
+    }
+
+    //    Simulazione sensore normale
+    // ---------------------------------
 
     for (int i = 0; i < 70; i++)
     {
@@ -56,6 +81,8 @@ void TempSensor::simulation()
             currentValue = newValue;
         }
     }
+
+    return true;
 }
 
 void TempSensor::accept(SensorVisitor *visitor) const

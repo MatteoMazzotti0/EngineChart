@@ -24,7 +24,7 @@ protected:
 public:
   AbstractSensor(const string & = "", const string & = "", const int & = 0, const int & = 100);
   virtual ~AbstractSensor() = 0;
-  virtual void simulation() = 0;
+  virtual bool simulation() = 0;
   int countValues() const;
   // Modifica valori
   bool insertNewVal(const int &, const int &);
