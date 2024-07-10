@@ -3,10 +3,9 @@
 
 
 
-FuelLevel::FuelLevel(const string &n, const string &d)
-    : AbstractSensor::AbstractSensor(n, d, 0, 90){
-
-      };
+FuelLevel::FuelLevel(const string &n, const string &d, const int &min, const int &max) : AbstractSensor::AbstractSensor(n, d, min, max)
+{
+};
 
 FuelLevel::~FuelLevel()
 {
@@ -25,7 +24,7 @@ void FuelLevel::simulation()
     {
         int variation = rand() % 2; // Variazione casuale tra 0 e +1
 
-        int tempValue = static_cast<int>(lastValue) - variation; // devo fare un check sull cast perchè sia safe
+        int tempValue = static_cast<int>(lastValue) - variation;
 
         // check che il valore sia nel range
         int newValue = tempValue < static_cast<int>(minValue) ? minValue :

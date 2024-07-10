@@ -9,7 +9,7 @@ class SensorVisitor;
 class HumiditySensor : public AbstractSensor
 {
 public:
-  HumiditySensor(const string & = "", const string & = "");
+  HumiditySensor(const string & = "", const string & = "", const int & = 20, const int & = 80);
   virtual ~HumiditySensor();
   virtual void simulation() override;
   virtual void accept(SensorVisitor *visitor) const override;

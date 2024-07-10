@@ -9,7 +9,7 @@ class SensorVisitor;
 class OilPressure : public AbstractSensor
 {
 public:
-  OilPressure(const string & = "", const string & = "");
+  OilPressure(const string & = "", const string & = "", const int & = 10, const int & = 90);
   virtual ~OilPressure() = default;
   virtual void simulation() override;
   virtual void accept(SensorVisitor *visitor) const override;

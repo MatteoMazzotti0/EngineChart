@@ -1,8 +1,7 @@
 #include "oilpressure.h"
 #include "../Visitor/sensorvisitor.h"
 
-OilPressure::OilPressure(const string &n, const string &d)
-    : AbstractSensor::AbstractSensor(n, d, 10, 90)
+OilPressure::OilPressure(const string &n, const string &d, const int &min, const int &max) : AbstractSensor::AbstractSensor(n, d, min, max)
 {
 }
 
@@ -42,7 +41,7 @@ void OilPressure::simulation()
 
             int variation = rand() % 2; // Variazione casuale tra 0 e 1
 
-            int tempValue = static_cast<int>(currentValue) - variation; // devo fare un check sull cast perchè sia safe
+            int tempValue = static_cast<int>(currentValue) - variation;
 
             // check che il valore sia nel range
             int newValue = tempValue < static_cast<int>(minValue) ? minValue : tempValue > static_cast<int>(maxValue) ? maxValue

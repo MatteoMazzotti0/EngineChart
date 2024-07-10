@@ -104,7 +104,7 @@ void SearchAddWidget::addClicked()
 
 void SearchAddWidget::deleteAllClicked()
 {
-    QMessageBox::StandardButton reply; // messaggio di accertamente
+    QMessageBox::StandardButton reply; // messaggio di accertamento
 
     reply = QMessageBox::question(this, "Delete All", "Are you sure you want to delete all sensors?",
                                   QMessageBox::Yes | QMessageBox::No);

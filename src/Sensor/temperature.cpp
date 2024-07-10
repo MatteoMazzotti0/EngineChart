@@ -2,7 +2,7 @@
 #include "../Visitor/sensorvisitor.h"
 #include <cstdlib>
 
-TempSensor::TempSensor(const string &n, const string &d) : AbstractSensor(n, d, -10, 120)
+TempSensor::TempSensor(const string &n, const string &d, const int &min, const int &max) : AbstractSensor::AbstractSensor(n, d, min, max)
 {
 }
 
@@ -42,7 +42,7 @@ void TempSensor::simulation()
 
             int variation = rand() % 3 - 1; // Variazione casuale tra -1 e +1
 
-            int tempValue = static_cast<int>(currentValue) + variation; // devo fare un check sull cast perchè sia safe
+            int tempValue = static_cast<int>(currentValue) + variation;
 
             // check che il valore sia nel range
             int newValue = tempValue < static_cast<int>(minTemperature) ? minTemperature

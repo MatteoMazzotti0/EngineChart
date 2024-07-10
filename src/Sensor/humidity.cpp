@@ -1,7 +1,7 @@
 #include "humidity.h"
 #include "../Visitor/sensorvisitor.h"
 
-HumiditySensor::HumiditySensor(const string &n, const string &d) : AbstractSensor::AbstractSensor(n, d, 20, 80)
+HumiditySensor::HumiditySensor(const string &n, const string &d, const int &min, const int &max) : AbstractSensor::AbstractSensor(n, d, min, max)
 {
 }
 

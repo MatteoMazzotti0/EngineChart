@@ -9,7 +9,7 @@ class SensorVisitor;
 class TempSensor : public AbstractSensor
 {
 public:
-  TempSensor(const string & = "", const string & = "");
+  TempSensor(const string & = "", const string & = "", const int & = -10, const int & = 120);
   virtual ~TempSensor() = default;
   void simulation() override;
   virtual void accept(SensorVisitor *visitor) const override;

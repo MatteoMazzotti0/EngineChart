@@ -2,9 +2,9 @@
 #include "../Visitor/sensorvisitor.h"
 #include <cstdlib>
 
-VehicleSpeed::VehicleSpeed(const string &n, const string &d) : AbstractSensor(n, d, 0, 220)
+VehicleSpeed::VehicleSpeed(const string &n, const string &d, const int &min, const int &max) : AbstractSensor::AbstractSensor(n, d, min, max)
 {
-}
+};
 
 void VehicleSpeed::simulation()
 {
