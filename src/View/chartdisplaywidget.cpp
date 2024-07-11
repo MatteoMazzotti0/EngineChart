@@ -47,7 +47,7 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target, const bool&
         }
         else
         {
-            series->setPen(QPen(Qt::darkBlue, 2));
+            series->setPen(QPen(Qt::darkGreen, 2));
         }
 
         // visita sensore per ottenere unità di misura
@@ -101,12 +101,14 @@ void ChartDisplayWidget::resetChart()
     // titolo e rimozione legenda
     chartView->chart()->legend()->hide();
     chartView->chart()->setTitle("Sensor values");
+    chartView->chart()->setTitleBrush(QBrush(Qt::black));
 
     // asse X
     auto axisX = new QValueAxis;
     axisX->setTickCount(10);
     chartView->chart()->addAxis(axisX, Qt::AlignBottom);
     chartView->chart()->addSeries(values);
+    axisX->setLinePenColor(Qt::black);
 
     // asse Y
     auto axisY = new QValueAxis;
@@ -114,6 +116,7 @@ void ChartDisplayWidget::resetChart()
     chartView->chart()->addAxis(axisY, Qt::AlignLeft);
     values->attachAxis(axisX);
     values->attachAxis(axisY);
+    axisY->setLinePenColor(Qt::black);
 }
 ChartDisplayWidget::~ChartDisplayWidget()
 {

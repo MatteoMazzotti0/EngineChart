@@ -9,13 +9,13 @@ bool OilPressure::simulation()
 {
     values.clear();
 
-    const int minValue = getmin(); // 10
-    const int maxValue = getmax(); // 90
+    const int minValue = getmin();
+    const int maxValue = getmax();
 
     int currentValue = maxValue;
 
     bool reachedSpot = false;    // check per quando l'olio raggiunge una certa pressione
-    const int spotPressure = 50; // pressione da raggiungere
+    const int spotPressure = 0.6 * maxValue; // pressione da raggiungere
 
     if(rand() % 10 == 0) // simulazione difettata 1 volta su 10
     {
@@ -40,7 +40,7 @@ bool OilPressure::simulation()
     {
         if (!reachedSpot) // diminuisco progressivamente i valori fino allo spot
         {
-            int increase = rand() % 5 + 2;
+             int increase = rand() % ((maxValue - minValue) / 20) + 1;
             int newValue = currentValue - increase;
 
             if (newValue <= spotPressure)

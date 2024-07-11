@@ -36,6 +36,7 @@ bool FuelLevel::simulation()
             return false;
         }
 
+
         int tempValue = lastValue - variation;
 
         // check che il valore sia nel range
@@ -45,6 +46,11 @@ bool FuelLevel::simulation()
 
         DataType<int> temp(i, newValue);
         values.push_back(temp);
+
+        if(newValue == minValue)
+        {
+            return true;
+        }
 
         lastValue = newValue;
     }

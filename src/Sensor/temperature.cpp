@@ -13,17 +13,21 @@ bool TempSensor::simulation()
     const int minTemperature = getmin(); // -10
     const int maxTemperature = getmax(); // 120
 
-    int currentValue = rand() % 20 - 10; // parte da temperature ambiente varie
+    int currentValue = minTemperature + rand() % 10; // parte da temperature ambiente varie
 
     bool reachedSpot = false;       // check per quando il motore raggiunge la temperatura ideale
     const int spotTemperature = maxTemperature * 0.7; // temperatura da raggiungere ~70% del massimo
+
+    DataType<int> temp(0, currentValue);
+    values.push_back(temp);
+
 
     //  Simulazione sensore non funzionante
     // -------------------------------------
 
     if (rand() % 10 == 0)   // in 1 simulazione ogni 10 la temperatura aumenta e basta
     {
-        for(int i = 0; i < 70; i++)
+        for(int i = 1; i < 70; i++)
         {
             int increase = rand() % 7 + 10;
             int newValue = currentValue + increase;
@@ -43,7 +47,7 @@ bool TempSensor::simulation()
     //    Simulazione sensore normale
     // ---------------------------------
 
-    for (int i = 0; i < 70; i++)
+    for (int i = 1; i < 69; i++)
     {
         if (!reachedSpot) // aumento progressivamente i valori fino a raggiugnere lo spot
         {

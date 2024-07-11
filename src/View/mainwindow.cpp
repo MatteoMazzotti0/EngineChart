@@ -250,30 +250,30 @@ AbstractSensor *MainWindow::getSensor(const string &name) const
 //    SALVATAGGIO E CARICAMENTO
 //  ------------------------------
 
-AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name, const std::string &description) const
+AbstractSensor *MainWindow::createSensor(const std::string &type, const std::string &name, const std::string &description, const int &min, const int& max) const
 {
     if (type == "Humidity")
     {
-        return new HumiditySensor(name, description);
+        return new HumiditySensor(name, description, min, max);
     }
 
     else if (type == "Temperature")
     {
-        return new TempSensor(name, description);
+        return new TempSensor(name, description, min, max);
     }
 
     else if (type == "Fuel Level")
     {
-        return new FuelLevel(name, description);
+        return new FuelLevel(name, description, min, max);
     }
 
     else if (type == "Oil Pressure")
     {
-        return new OilPressure(name, description);
+        return new OilPressure(name, description, min, max);
     }
 
     else if (type == "Vehicle Speed") {
-        return new VehicleSpeed(name, description);
+        return new VehicleSpeed(name, description, min, max);
     }
 
     return nullptr;
@@ -286,6 +286,8 @@ QJsonObject MainWindow::sensorToJson(const AbstractSensor *sensor) const
     json["type"] = QString::fromStdString(visitor->getType());
     json["name"] = QString::fromStdString(sensor->getname());
     json["description"] = QString::fromStdString(sensor->getdesc());
+    json["min"] = QString::number(sensor->getmin());
+    json["max"] = QString::number(sensor->getmax());
 
     QJsonArray valuesArray;
     for (int i = 0; i < sensor->countValues(); ++i)
@@ -303,8 +305,11 @@ QJsonObject MainWindow::sensorToJson(const AbstractSensor *sensor) const
 
 AbstractSensor *MainWindow::jsonToSensor(const QJsonObject &json) const
 {
-    AbstractSensor *sensor = createSensor(json["type"].toString().toStdString(), json["name"].toString().toStdString(),
-                                          json["description"].toString().toStdString());
+    AbstractSensor *sensor = createSensor(json["type"].toString().toStdString(),
+                                          json["name"].toString().toStdString(),
+                                          json["description"].toString().toStdString(),
+                                          json["min"].toString().toInt(),
+                                          json["max"].toString().toInt());
 
     if (!sensor)
     {
@@ -419,6 +424,7 @@ void MainWindow::onSensorDeleted() // delete sensore singolo
     searchWidget->setFocus(nullptr);
     info->clearText();
     info->clearLayout();
+    chart->resetChart();
 }
 
 void MainWindow::onRefresh(const AbstractSensor *sensor, const string& oldName) // aggiornamento nome post editing

@@ -196,9 +196,9 @@ void AddItem::on_TempRadio_toggled(bool checked)
         ui->MaxLine->setPlaceholderText("120");
 
         // check per min non oltre il minimo consentito
-        if(ui->MinLine->text().toInt() < -20)
+        if(ui->MinLine->text().toInt() < -30)
         {
-            ui->MinLine->setText("-20");
+            ui->MinLine->setText("-30");
         }
 
         // check min oltre il massimo consentito
@@ -219,8 +219,8 @@ void AddItem::on_TempRadio_toggled(bool checked)
             ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
         }
 
-        // set validators per valori di temperatura consoni (i motori delle auto da F1 possono raggiungere i 200°C)
-        QIntValidator *tempMin = new QIntValidator(-20, 199, this);
+        // set validators per valori di temperatura consoni (i motori delle auto da F1 possono raggiungere i 200°C e assumiamo la possibilità di un'eventuale era glaciale)
+        QIntValidator *tempMin = new QIntValidator(-30, 199, this);
         ui->MinLine->setValidator(tempMin);
 
         QIntValidator *tempMax = new QIntValidator(ui->MinLine->text().toInt(), 200, this);

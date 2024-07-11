@@ -25,7 +25,7 @@ class MainWindow : public QMainWindow
 
   public:
     MainWindow(QWidget *parent = nullptr);
-    AbstractSensor *createSensor(const std::string &, const std::string &, const std::string &) const;
+    AbstractSensor *createSensor(const std::string &, const std::string &, const std::string &, const int &, const int &) const;
     QJsonObject sensorToJson(const AbstractSensor *) const;
     AbstractSensor *jsonToSensor(const QJsonObject &)const;
     void saveSensors(const std::vector<AbstractSensor *> &, const QString &) const;
