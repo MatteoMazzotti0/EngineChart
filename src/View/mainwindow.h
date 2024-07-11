@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
     void saveSensors(const std::vector<AbstractSensor *> &, const QString &) const;
     std::vector<AbstractSensor *> loadSensors(const QString &);
     AbstractSensor *getSensor(const std::string &) const;
+
     ~MainWindow();
 
   private slots:

@@ -85,6 +85,20 @@ bool TempSensor::simulation()
     return true;
 }
 
+void TempSensor::checkValues()
+{
+    for (auto it = values.begin(); it != values.end(); it++)
+    {
+        if(it->value() > getmax() || it->value() < getmin())
+        {
+            setcorrectvalues(false); // trovato valore difettoso
+            return;
+        }
+    }
+
+    setcorrectvalues(true);
+}
+
 void TempSensor::accept(SensorVisitor *visitor) const
 {
     return visitor->visit(this);

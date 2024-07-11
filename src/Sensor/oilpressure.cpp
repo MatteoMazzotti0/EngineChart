@@ -76,6 +76,20 @@ bool OilPressure::simulation()
     return true;
 }
 
+void OilPressure::checkValues()
+{
+    for (auto it = values.begin(); it != values.end(); it++)
+    {
+        if(it->value() > getmax() || it->value() < getmin())
+        {
+            setcorrectvalues(false); // trovato valore difettoso
+            return;
+        }
+    }
+
+    setcorrectvalues(true);
+}
+
 void OilPressure::accept(SensorVisitor *visitor) const
 {
     return visitor->visit(this);

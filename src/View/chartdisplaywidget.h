@@ -16,7 +16,7 @@ class ChartDisplayWidget : public QWidget
 
 public:
     explicit ChartDisplayWidget(QWidget *parent = nullptr);
-    void displayValues(const AbstractSensor*);
+    void displayValues(const AbstractSensor*, const bool&);
     void resetChart();
     ~ChartDisplayWidget();
 private:

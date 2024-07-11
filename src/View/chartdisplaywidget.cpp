@@ -7,11 +7,11 @@ ChartDisplayWidget::ChartDisplayWidget(QWidget *parent) : QWidget(parent), ui(ne
     ui->setupUi(this);
     ui->frame->setFrameStyle(QFrame::Box);
     chartView = new QChartView();
-    this->displayValues(nullptr);
+    this->displayValues(nullptr, true);
     ui->horizontalLayout_2->addWidget(chartView);
 }
 
-void ChartDisplayWidget::displayValues(const AbstractSensor *target)
+void ChartDisplayWidget::displayValues(const AbstractSensor *target, const bool& simulationSuccess)
 {
     // rimozione degli assi esistenti + reset grafico
     chartView->chart()->removeAllSeries();
@@ -20,14 +20,35 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target)
         chartView->chart()->removeAxis(chartView->chart()->axes().takeFirst());
     }
 
+    // creazione titolo con nome e colore diverso a seconda della simulazione
+    QString chartTitle = "Sensor values";
     chartView->chart()->legend()->hide();
-    chartView->chart()->setTitle("Sensor values");
+    if (!simulationSuccess && target->countValues() > 1)
+    {
+        chartTitle += " - defective";
+        chartView->chart()->setTitleBrush(QBrush(Qt::red));
+    }
+    else
+    {
+        chartView->chart()->setTitleBrush(QBrush(Qt::black));
+    }
+    chartView->chart()->setTitle(chartTitle);
 
     ConcreteVisitor *visitor = new ConcreteVisitor();
 
     if (target != nullptr)
     {
         QLineSeries *series = new QLineSeries();
+
+        // cambio colore grafico in base alla simulazione
+        if (!simulationSuccess && target->countValues() > 1)
+        {
+            series->setPen(QPen(Qt::red, 2));
+        }
+        else
+        {
+            series->setPen(QPen(Qt::darkBlue, 2));
+        }
 
         // visita sensore per ottenere unità di misura
         target->accept(visitor);
@@ -44,6 +65,7 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target)
         axisX->setTitleText("(min)");
         chartView->chart()->addAxis(axisX, Qt::AlignBottom);
         chartView->chart()->addSeries(series);
+        axisX->setLinePenColor(Qt::black);
 
         // asse Y
         auto axisY = new QValueAxis;
@@ -51,6 +73,7 @@ void ChartDisplayWidget::displayValues(const AbstractSensor *target)
         axisY->setRange(target->getmin(), target->getmax()); // range adattivo asse Y
         axisY->setLinePenColor(series->pen().color());
         chartView->chart()->addAxis(axisY, Qt::AlignLeft);
+        axisY->setLinePenColor(Qt::black);
 
         series->attachAxis(axisX);
         series->attachAxis(axisY);

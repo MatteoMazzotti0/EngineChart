@@ -53,6 +53,21 @@ bool HumiditySensor::simulation()
     return true;
 }
 
+void HumiditySensor::checkValues()
+{
+    for (auto it = values.begin(); it != values.end(); it++)
+    {
+        if(it->value() > getmax() || it->value() < getmin())
+        {
+            setcorrectvalues(false); // trovato valore difettoso
+            return;
+        }
+    }
+
+    setcorrectvalues(true);
+}
+
+
 void HumiditySensor::accept(SensorVisitor *visitor) const
 {
     return visitor->visit(this);

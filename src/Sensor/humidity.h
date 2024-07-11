@@ -12,6 +12,7 @@ public:
   HumiditySensor(const string & = "", const string & = "", const int & = 20, const int & = 80);
   virtual ~HumiditySensor();
   virtual bool simulation() override;
+  virtual void checkValues() override;
   virtual void accept(SensorVisitor *visitor) const override;
   virtual void setButton(SensorVisitor *visitor) const override;
   virtual void setUnitMeasure(SensorVisitor *visitor) const override;

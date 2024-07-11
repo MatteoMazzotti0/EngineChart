@@ -11,8 +11,8 @@ InputDialog::InputDialog(QWidget *parent, const int& min, const int& max) : QDia
     ui->timeBox->setSingleStep(1);
     ui->timeBox->setValue(0);
 
-    ui->valueBox->setMinimum(min);
-    ui->valueBox->setMaximum(max);
+    ui->valueBox->setMinimum(-99);
+    ui->valueBox->setMaximum(999);
     ui->valueBox->setSingleStep(1);
     ui->valueBox->setValue(0);
 

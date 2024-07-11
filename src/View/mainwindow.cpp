@@ -155,17 +155,19 @@ void MainWindow::onStartSim() // avvia simulazione sul grafico
 
     if (searchWidget->getFocus() != nullptr)
     {
-        searchWidget->getFocus()->simulation();
-        chart->displayValues(searchWidget->getFocus());
+        searchWidget->getFocus()->setcorrectvalues(searchWidget->getFocus()->simulation());
+        chart->displayValues(searchWidget->getFocus(), searchWidget->getFocus()->getcorrectvalues());
+
     }
 }
 
-void MainWindow::onUpdateChart()
+void MainWindow::onUpdateChart() // aggiorna
 {
 
     if (searchWidget->getFocus() != nullptr)
     {
-        chart->displayValues(searchWidget->getFocus());
+        searchWidget->getFocus()->checkValues();
+        chart->displayValues(searchWidget->getFocus(), searchWidget->getFocus()->getcorrectvalues());
     }
 }
 
@@ -208,6 +210,7 @@ void MainWindow::onRequestDeleteVal(const int& time, const int& val) // rimozion
 void MainWindow::onDeleteAllValues() // rimozione di tutti i valori
 {
     searchWidget->getFocus()->deleteAllValues();
+    searchWidget->getFocus()->checkValues();
     inspectWnd->refresh(searchWidget->getFocus());
 }
 
@@ -360,6 +363,7 @@ std::vector<AbstractSensor *> MainWindow::loadSensors(const QString &filename)
         AbstractSensor *sensor = jsonToSensor(jsonValue.toObject());
         if (sensor)
         {
+            sensor->checkValues();  // aggiorna la variabile del sensore
             sensors.push_back(sensor);
             searchWidget->addButton(sensor, visitor);
         }

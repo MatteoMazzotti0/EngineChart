@@ -51,8 +51,8 @@ void InspectWindow::onDeleteValue()
 {
     if ((ui->TimeView->count() != 0 && ui->ValueView->count() != 0) && (ui->TimeView->currentItem()!=nullptr) && ui->ValueView->currentItem()!=nullptr)
     {
-        emit requestDeleteVal(ui->TimeView->item(currentFocus)->text().toUInt(),
-                              ui->ValueView->item(currentFocus)->text().toUInt());
+        emit requestDeleteVal(ui->TimeView->item(currentFocus)->text().toInt(),
+                              ui->ValueView->item(currentFocus)->text().toInt());
         ui->TimeView->setCurrentRow(currentFocus - 1);
         ui->ValueView->setCurrentRow(currentFocus - 1);
         refresh(inspected);

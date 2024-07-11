@@ -83,6 +83,11 @@ void AbstractSensor::setmin(const int &newMin)
     this->min = newMin;
 }
 
+void AbstractSensor::setcorrectvalues(const bool &valueStatus)
+{
+    this->correctValues = valueStatus;
+}
+
 string AbstractSensor::getdesc() const
 {
     return description;
@@ -101,6 +106,11 @@ int AbstractSensor::getmax() const
 int AbstractSensor::getmin() const
 {
     return min;
+}
+
+bool AbstractSensor::getcorrectvalues() const
+{
+    return correctValues;
 }
 
 bool order(const DataType<int> &a, const DataType<int> &b)

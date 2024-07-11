@@ -51,6 +51,21 @@ bool FuelLevel::simulation()
     return true;
 }
 
+void FuelLevel::checkValues()
+{
+
+    for (auto it = values.begin(); it != values.end(); it++)
+    {
+        if(it->value() > getmax() || it->value() < getmin())
+        {
+            setcorrectvalues(false); // trovato valore difettoso
+            return;
+        }
+    }
+    setcorrectvalues(true);
+
+}
+
 void FuelLevel::accept(SensorVisitor *visitor) const
 {
     return visitor->visit(this);
