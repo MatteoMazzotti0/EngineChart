@@ -58,7 +58,7 @@ void AddItem::on_AddButtonDiag_clicked()
 
     else
     {
-        if(sensorMin.isEmpty() && sensorMax.isEmpty() || !sensorMin.isEmpty() && !sensorMax.isEmpty())
+        if((sensorMin.isEmpty() && sensorMax.isEmpty()) || (!sensorMin.isEmpty() && !sensorMax.isEmpty()))
         {
             // mette valore di default in caso min e max vuoti
             if(sensorMin.isEmpty())
@@ -226,6 +226,5 @@ void AddItem::on_FuelRadio_toggled(bool checked)
         ui->DefaultValuesLabel->setText("(0 - 170 L)");
         setValueRange(0, 170);
     }
-
 }
 
