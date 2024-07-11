@@ -35,7 +35,6 @@ AddItem::AddItem(QWidget *parent) : QDialog(parent), ui(new Ui::AddItem)
     ui->MaxLine->setValidator(validatorMax);
     ui->MaxLine->setMaxLength(3);
     ui->DefaultValuesLabel->setText("");
-
 }
 
 AddItem::~AddItem()
@@ -59,53 +58,61 @@ void AddItem::on_AddButtonDiag_clicked()
 
     else
     {
-        // mette valore di default in caso min e max vuoti
-        if(sensorMin.isEmpty())
+        if(sensorMin.isEmpty() && sensorMax.isEmpty() || !sensorMin.isEmpty() && !sensorMax.isEmpty())
         {
-            sensorMin = ui->MinLine->placeholderText();
+            // mette valore di default in caso min e max vuoti
+            if(sensorMin.isEmpty())
+            {
+                sensorMin = ui->MinLine->placeholderText();
+            }
+
+            if(sensorMax.isEmpty())
+            {
+                sensorMax = ui->MaxLine->placeholderText();
+            }
+
+            if (ui->HumRadio->isChecked())
+            {
+                HumiditySensor *newsensor =
+                    new HumiditySensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
+                emit dataAvailable(newsensor);
+                close();
+            }
+            else if (ui->TempRadio->isChecked())
+            {
+                TempSensor *newsensor =
+                    new TempSensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
+                emit dataAvailable(newsensor);
+                close();
+            }
+            else if (ui->PressRadio->isChecked())
+            {
+                OilPressure *newsensor =
+                    new OilPressure(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
+                emit dataAvailable(newsensor);
+                close();
+            }
+            else if (ui->FuelRadio->isChecked())
+            {
+                FuelLevel *newsensor =
+                    new FuelLevel(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
+                emit dataAvailable(newsensor);
+                close();
+            }
+            else if (ui->SpeedRadio->isChecked())
+            {
+                VehicleSpeed *newsensor =
+                    new VehicleSpeed(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
+                emit dataAvailable(newsensor);
+                close();
+            }
         }
 
-        if(sensorMax.isEmpty())
+        else
         {
-            sensorMax = ui->MaxLine->placeholderText();
+            ErrorPopup *errorPopup = new ErrorPopup("Set both min and max", this);
+            errorPopup->show();
         }
-
-        if (ui->HumRadio->isChecked())
-        {
-            HumiditySensor *newsensor =
-                new HumiditySensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
-            emit dataAvailable(newsensor);
-            close();
-        }
-        else if (ui->TempRadio->isChecked())
-        {
-            TempSensor *newsensor =
-                new TempSensor(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
-            emit dataAvailable(newsensor);
-            close();
-        }
-        else if (ui->PressRadio->isChecked())
-        {
-            OilPressure *newsensor =
-                new OilPressure(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
-            emit dataAvailable(newsensor);
-            close();
-        }
-        else if (ui->FuelRadio->isChecked())
-        {
-            FuelLevel *newsensor =
-                new FuelLevel(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
-            emit dataAvailable(newsensor);
-            close();
-        }
-        else if (ui->SpeedRadio->isChecked())
-        {
-            VehicleSpeed *newsensor =
-                new VehicleSpeed(ui->NameLine->text().toStdString(), ui->DescLine->text().toStdString(), sensorMin.toInt(), sensorMax.toInt());
-            emit dataAvailable(newsensor);
-            close();
-        }
-
     }
 }
 
