@@ -34,6 +34,7 @@ AddItem::AddItem(QWidget *parent) : QDialog(parent), ui(new Ui::AddItem)
     ui->MinLine->setMaxLength(3);
     ui->MaxLine->setValidator(validatorMax);
     ui->MaxLine->setMaxLength(3);
+    ui->DefaultValuesLabel->setText("");
 
 }
 
@@ -169,9 +170,9 @@ void AddItem::setValueRange(int minRange, int maxRange)
 void AddItem::on_SpeedRadio_toggled(bool checked)
 {
     if(checked){
-        // imposta placeholders
         ui->MinLine->setPlaceholderText("0");
         ui->MaxLine->setPlaceholderText("220");
+        ui->DefaultValuesLabel->setText("(0 - 550 Km/h)");
         setValueRange(0, 550);
     }
 }
@@ -182,6 +183,7 @@ void AddItem::on_HumRadio_toggled(bool checked)
     if(checked){
         ui->MinLine->setPlaceholderText("20");
         ui->MaxLine->setPlaceholderText("80");
+        ui->DefaultValuesLabel->setText("(0 - 100 %)");
         setValueRange(0, 100);
     }
 }
@@ -192,6 +194,7 @@ void AddItem::on_TempRadio_toggled(bool checked)
     if(checked){
         ui->MinLine->setPlaceholderText("0");
         ui->MaxLine->setPlaceholderText("120");
+        ui->DefaultValuesLabel->setText("(-30 - 200 °C)");
         setValueRange(-30, 200);
     }
 }
@@ -202,6 +205,7 @@ void AddItem::on_PressRadio_toggled(bool checked)
     if(checked){
         ui->MinLine->setPlaceholderText("10");
         ui->MaxLine->setPlaceholderText("90");
+        ui->DefaultValuesLabel->setText("(0 - 100 bar)");
         setValueRange(0, 100);
     }
 }
@@ -212,6 +216,7 @@ void AddItem::on_FuelRadio_toggled(bool checked)
     if(checked){
         ui->MinLine->setPlaceholderText("0");
         ui->MaxLine->setPlaceholderText("90");
+        ui->DefaultValuesLabel->setText("(0 - 170 L)");
         setValueRange(0, 170);
     }
 
