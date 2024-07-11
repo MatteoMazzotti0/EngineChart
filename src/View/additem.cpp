@@ -108,43 +108,72 @@ void AddItem::on_AddButtonDiag_clicked()
     }
 }
 
+void AddItem::adjustValues(int minRange, int maxRange)
+{
+    disconnect(ui->MinLine, &QLineEdit::textChanged, this, nullptr);
+    disconnect(ui->MaxLine, &QLineEdit::textChanged, this, nullptr);
+
+    int minVal = ui->MinLine->text().toInt();
+    int maxVal = ui->MaxLine->text().toInt();
+
+    // check minVal nei limiti
+    if (minVal < minRange)
+    {
+        minVal = minRange;
+        ui->MinLine->setText(QString::number(minVal));
+    }
+    else if (minVal > maxRange - 1)
+    {
+        minVal = maxRange - 1;
+        ui->MinLine->setText(QString::number(minVal));
+    }
+
+    // check maxVal nei limiti
+    if (maxVal > maxRange)
+    {
+        maxVal = maxRange;
+        ui->MaxLine->setText(QString::number(maxVal));
+    }
+
+    // check maxVal > minVal
+    if (!ui->MaxLine->text().isEmpty() && maxVal <= minVal)
+    {
+        maxVal = minVal + 1;
+        ui->MaxLine->setText(QString::number(maxVal));
+    }
+    // update validator
+    QIntValidator *maxValidator = new QIntValidator(minVal, maxRange, this);
+    ui->MaxLine->setValidator(maxValidator);
+
+    connect(ui->MinLine, &QLineEdit::textChanged, this, [=] { adjustValues(minRange, maxRange); });
+    connect(ui->MaxLine, &QLineEdit::textChanged, this, [=] { adjustValues(minRange, maxRange); });
+
+}
+
+void AddItem::setValueRange(int minRange, int maxRange)
+{
+    // imposta placeholders
+    ui->MinLine->setPlaceholderText(QString::number(minRange));
+    ui->MaxLine->setPlaceholderText(QString::number(maxRange));
+
+    // imposta validators
+    QIntValidator *minValidator = new QIntValidator(minRange, maxRange - 1, this);
+    ui->MinLine->setValidator(minValidator);
+
+    QIntValidator *maxValidator = new QIntValidator(minRange, maxRange, this);
+    ui->MaxLine->setValidator(maxValidator);
+
+    // check min e max limiti consentiti
+    adjustValues(minRange, maxRange);
+
+    connect(ui->MinLine, &QLineEdit::textChanged, this, [=] { adjustValues(minRange, maxRange); });
+    connect(ui->MaxLine, &QLineEdit::textChanged, this, [=] { adjustValues(minRange, maxRange); });
+}
+
 void AddItem::on_SpeedRadio_toggled(bool checked)
 {
     if(checked){
-        // aggiornamento placeholder con fefault values
-        ui->MinLine->setPlaceholderText("0");
-        ui->MaxLine->setPlaceholderText("220");
-
-        // check per valori non negativi del min
-        if(ui->MinLine->text().toInt() < 0)
-        {
-            ui->MinLine->setText("0");
-        }
-
-        // check min oltre il massimo consentito
-        if(ui->MinLine->text().toInt() > 99)
-        {
-            ui->MinLine->setText("549");
-        }
-
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 550)
-        {
-            ui->MaxLine->setText("550");
-        }
-
-        // check che max > min
-        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-        {
-            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-        }
-
-        // set validators per valori di velocità consoni
-        QIntValidator *speedMin = new QIntValidator(0, 549, this);
-        ui->MinLine->setValidator(speedMin);
-
-        QIntValidator *speedMax = new QIntValidator(ui->MinLine->text().toInt(), 550, this);
-        ui->MaxLine->setValidator(speedMax);
+        setValueRange(0, 550);
     }
 }
 
@@ -152,39 +181,7 @@ void AddItem::on_SpeedRadio_toggled(bool checked)
 void AddItem::on_HumRadio_toggled(bool checked)
 {
     if(checked){
-        ui->MinLine->setPlaceholderText("20");
-        ui->MaxLine->setPlaceholderText("80");
-
-        // check per valori non negativi del min
-        if(ui->MinLine->text().toInt() < 0)
-        {
-            ui->MinLine->setText("0");
-        }
-
-        // check min oltre il massimo consentito
-        if(ui->MinLine->text().toInt() > 99)
-        {
-            ui->MinLine->setText("99");
-        }
-
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 100)
-        {
-            ui->MaxLine->setText("100");
-        }
-
-        // check che max > min
-        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-        {
-            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-        }
-
-        // set validators per valori di umidità consoni
-        QIntValidator *humidityMin = new QIntValidator(0, 99, this);
-        ui->MinLine->setValidator(humidityMin);
-
-        QIntValidator *himidityMax = new QIntValidator(ui->MinLine->text().toInt(), 100, this);
-        ui->MaxLine->setValidator(himidityMax);
+        setValueRange(0, 100);
     }
 }
 
@@ -192,39 +189,7 @@ void AddItem::on_HumRadio_toggled(bool checked)
 void AddItem::on_TempRadio_toggled(bool checked)
 {
     if(checked){
-        ui->MinLine->setPlaceholderText("-10");
-        ui->MaxLine->setPlaceholderText("120");
-
-        // check per min non oltre il minimo consentito
-        if(ui->MinLine->text().toInt() < -30)
-        {
-            ui->MinLine->setText("-30");
-        }
-
-        // check min oltre il massimo consentito
-        if(ui->MinLine->text().toInt() > 199)
-        {
-            ui->MinLine->setText("199");
-        }
-
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 200)
-        {
-            ui->MaxLine->setText("200");
-        }
-
-        // check che max > min
-        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-        {
-            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-        }
-
-        // set validators per valori di temperatura consoni (i motori delle auto da F1 possono raggiungere i 200°C e assumiamo la possibilità di un'eventuale era glaciale)
-        QIntValidator *tempMin = new QIntValidator(-30, 199, this);
-        ui->MinLine->setValidator(tempMin);
-
-        QIntValidator *tempMax = new QIntValidator(ui->MinLine->text().toInt(), 200, this);
-        ui->MaxLine->setValidator(tempMax);
+        setValueRange(-30, 200);
     }
 }
 
@@ -232,39 +197,7 @@ void AddItem::on_TempRadio_toggled(bool checked)
 void AddItem::on_PressRadio_toggled(bool checked)
 {
     if(checked){
-        ui->MinLine->setPlaceholderText("10");
-        ui->MaxLine->setPlaceholderText("90");
-
-        // check per valori non negativi del min
-        if(ui->MinLine->text().toInt() < 0)
-        {
-            ui->MinLine->setText("0");
-        }
-
-        // check min oltre il massimo consentito
-        if(ui->MinLine->text().toInt() > 99)
-        {
-            ui->MinLine->setText("99");
-        }
-
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 100)
-        {
-            ui->MaxLine->setText("100");
-        }
-
-        // check che max > min
-        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-        {
-            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-        }
-
-        // set validators per valori di pressione consoni
-        QIntValidator *psiMin = new QIntValidator(0, 99, this);
-        ui->MinLine->setValidator(psiMin);
-
-        QIntValidator *psiMax = new QIntValidator(ui->MinLine->text().toInt(), 100, this);
-        ui->MaxLine->setValidator(psiMax);
+        setValueRange(0, 100);
     }
 }
 
@@ -272,39 +205,7 @@ void AddItem::on_PressRadio_toggled(bool checked)
 void AddItem::on_FuelRadio_toggled(bool checked)
 {
     if(checked){
-        ui->MinLine->setPlaceholderText("0");
-        ui->MaxLine->setPlaceholderText("90");
-
-        // check per valori non negativi del min
-        if(ui->MinLine->text().toInt() < 0)
-        {
-            ui->MinLine->setText("0");
-        }
-
-        // check min oltre il massimo consentito
-        if(ui->MinLine->text().toInt() > 169)
-        {
-            ui->MinLine->setText("169");
-        }
-
-        // check max non oltre il limite massimo
-        if(ui->MaxLine->text().toInt() > 170)
-        {
-            ui->MaxLine->setText("170");
-        }
-
-        // check che max > min
-        if(ui->MinLine->text().toInt() > ui->MaxLine->text().toInt())
-        {
-            ui->MaxLine->setText(QString::number(ui->MinLine->text().toInt() + 1));
-        }
-
-        // set validators per valori di capienza consoni
-        QIntValidator *tankMin = new QIntValidator(0, 169, this);
-        ui->MinLine->setValidator(tankMin);
-
-        QIntValidator *tankMax = new QIntValidator(ui->MinLine->text().toInt(), 170, this);
-        ui->MaxLine->setValidator(tankMax);
+        setValueRange(0, 170);
     }
 
 }
