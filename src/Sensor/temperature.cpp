@@ -16,7 +16,7 @@ bool TempSensor::simulation()
     int currentValue = minTemperature + rand() % 10; // parte da temperature ambiente varie
 
     bool reachedSpot = false;       // check per quando il motore raggiunge la temperatura ideale
-    const int spotTemperature = maxTemperature * 0.7; // temperatura da raggiungere ~70% del massimo
+    const int spotTemperature = maxTemperature * 0.75; // temperatura da raggiungere ~75% del massimo
 
     DataType<int> temp(0, currentValue);
     values.push_back(temp);

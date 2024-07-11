@@ -152,10 +152,6 @@ void AddItem::adjustValues(int minRange, int maxRange)
 
 void AddItem::setValueRange(int minRange, int maxRange)
 {
-    // imposta placeholders
-    ui->MinLine->setPlaceholderText(QString::number(minRange));
-    ui->MaxLine->setPlaceholderText(QString::number(maxRange));
-
     // imposta validators
     QIntValidator *minValidator = new QIntValidator(minRange, maxRange - 1, this);
     ui->MinLine->setValidator(minValidator);
@@ -173,6 +169,9 @@ void AddItem::setValueRange(int minRange, int maxRange)
 void AddItem::on_SpeedRadio_toggled(bool checked)
 {
     if(checked){
+        // imposta placeholders
+        ui->MinLine->setPlaceholderText("0");
+        ui->MaxLine->setPlaceholderText("220");
         setValueRange(0, 550);
     }
 }
@@ -181,6 +180,8 @@ void AddItem::on_SpeedRadio_toggled(bool checked)
 void AddItem::on_HumRadio_toggled(bool checked)
 {
     if(checked){
+        ui->MinLine->setPlaceholderText("20");
+        ui->MaxLine->setPlaceholderText("80");
         setValueRange(0, 100);
     }
 }
@@ -189,6 +190,8 @@ void AddItem::on_HumRadio_toggled(bool checked)
 void AddItem::on_TempRadio_toggled(bool checked)
 {
     if(checked){
+        ui->MinLine->setPlaceholderText("0");
+        ui->MaxLine->setPlaceholderText("120");
         setValueRange(-30, 200);
     }
 }
@@ -197,6 +200,8 @@ void AddItem::on_TempRadio_toggled(bool checked)
 void AddItem::on_PressRadio_toggled(bool checked)
 {
     if(checked){
+        ui->MinLine->setPlaceholderText("10");
+        ui->MaxLine->setPlaceholderText("90");
         setValueRange(0, 100);
     }
 }
@@ -205,6 +210,8 @@ void AddItem::on_PressRadio_toggled(bool checked)
 void AddItem::on_FuelRadio_toggled(bool checked)
 {
     if(checked){
+        ui->MinLine->setPlaceholderText("0");
+        ui->MaxLine->setPlaceholderText("90");
         setValueRange(0, 170);
     }
 
